@@ -1,0 +1,35 @@
+<div>
+
+    <script>
+        jQuery(function () {
+
+            jQuery('#camera_wrap_1').camera({
+                thumbnails: true
+            });
+
+            jQuery('#camera_wrap_2').camera({
+                height: '400px',
+                loader: 'bar',
+                pagination: false,
+                thumbnails: true
+            });
+        });
+    </script>
+
+    <div class="slider">
+        <div class="fluid_container">
+            <div class="camera_wrap camera_magenta_skin" id="camera_wrap_1">
+                <div data-src="../../../assets/images/slider1.jpg">
+                    <div class="camera_caption fadeFromBottom"> </div>
+                </div>
+                <div data-src="../../../assets/images/slider2.jpg">
+                    <div class="camera_caption fadeFromBottom"> </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+
+
+</div>

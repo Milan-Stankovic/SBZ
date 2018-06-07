@@ -2,7 +2,9 @@ package sbz.projekat.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 import sbz.projekat.dto.KorisnikDTO;
+import sbz.projekat.dto.LoginDTO;
 import sbz.projekat.model.Korisnik;
 import sbz.projekat.service.KorisnikService;
 
@@ -19,18 +21,22 @@ public class KorisnikController {
         return korService.getAll();
     }
 
+
     @RequestMapping(method = RequestMethod.GET, value = "/users/{name}")
     public Korisnik getOne(@PathVariable String name){
         return korService.getByUsernameKorisnik(name);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/users/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/login")
+    public Korisnik login(@RequestBody LoginDTO login){ return korService.login(login); }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/users/get/{id}")
     public Korisnik getOneId(@PathVariable Long id){
         return korService.getById(id);
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/users/{last}")
+    @RequestMapping(method = RequestMethod.GET, value = "/users/last/{last}")
     public List<Korisnik> getOneLast(@PathVariable String last){
         return korService.getByLastName(last);
     }

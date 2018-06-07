@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sbz.projekat.dodatno.Converter;
 import sbz.projekat.dto.KorisnikDTO;
+import sbz.projekat.dto.LoginDTO;
 import sbz.projekat.model.Korisnik;
 import sbz.projekat.repostory.KorisnikRepository;
 
@@ -30,6 +31,29 @@ public class KorisnikService {
             k.setId(id);
             k= korRepo.save(k);
         }
+        return k;
+    }
+
+    public Korisnik login(LoginDTO l){
+        Korisnik k = null;
+
+
+        if(l != null){
+
+            if(l.getPassword() !=null && l.getUsername() != null){
+                if(l.getUsername().trim().length()>0 && l.getPassword().trim().length()>0){
+                    String username = l.getUsername();
+                    String password = l.getPassword();
+                    k = korRepo.findByUsername(username);
+                    if(k != null){
+                        if(!k.getPassword().equals(password))
+                            k=null;
+                    }
+                }
+            }
+
+        }
+
         return k;
     }
 

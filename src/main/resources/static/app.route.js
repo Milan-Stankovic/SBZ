@@ -19,19 +19,17 @@
 			 templateUrl: 'app/components/home/home.html',
 			 controller: 'homeController',
 			 controllerAs: 'hc'
-		 })
-		  .state('core.inbox', {
-          url: 'inbox',
-          templateUrl: 'app/components/inbox/inbox.html',
-          controller: 'inboxController',
-          controllerAs: 'ic'
-      })
-		.state('core.profile', {
-			url: 'profile',
-			templateUrl: 'app/components/profile/profile.html',
-			controller: 'profileController',
-			controllerAs: 'pc'
-		});
+		}).state('core.profile', {
+          url: 'profile',
+          templateUrl: 'app/components/profile/profile.html',
+          controller: 'profileController',
+          controllerAs: 'pc'
+      }).state('core.login', {
+          url: 'login',
+          templateUrl: 'app/components/login/login.html',
+          controller: 'loginController',
+          controllerAs: 'lc'
+      });
      /* $locationProvider.html5Mode({
     	  enabled: true,
     	  requireBase: false

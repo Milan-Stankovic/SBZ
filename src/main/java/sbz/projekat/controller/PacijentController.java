@@ -20,7 +20,7 @@ public class PacijentController {
     public List<Pacijent> getAll(){ return pService.getAll(); }
 
     @RequestMapping(method = RequestMethod.GET, value = "/patient/{id}")
-    public Pacijent getOne(@PathVariable String id){ return pService.getPacijentZdravstvena(id); }
+    public Pacijent getOne(@PathVariable String id){ return pService.getPacijentZdravstvena(id);  }
 
     @RequestMapping(method = RequestMethod.GET, value = "/patient/{ime}/{prezime}")
     public List<Pacijent> getImePrezime(@PathVariable String ime, @PathVariable String prezime){ return pService.getAllImePrezime(ime, prezime); }
