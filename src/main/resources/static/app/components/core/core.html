@@ -35,21 +35,40 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <li class="active">
                 <a href="http://localhost:8096/#!/home" title="Home">Home</a>
             </li>
-            <li>
-                <a href="about.html">About</a>
+
+            <li ng-if="isAdmin">
+                <a href="http://localhost:8096/#!/admin" >Users</a>
             </li>
-            <li ng-if="provera() && !proveraAdmin()">
-                <a href="service.html">Services</a>
+
+            <li >
+                <a href="http://localhost:8096/#!/patient" >Patients</a>
             </li>
-            <li ng-if="provera()">
+
+            <li ng-if="doktorJe()">
+                <a href="http://localhost:8096/#!/ingredient" >Ingredients</a>
+            </li>
+
+            <li ng-if="doktorJe()">
+                <a href="http://localhost:8096/#!/symptom" >Symptoms</a>
+            </li>
+
+            <li ng-if="doktorJe()">
+                <a href="http://localhost:8096/#!/ilness" >Illnesses</a>
+            </li>
+
+            <li ng-if="doktorJe()">
+                <a href="http://localhost:8096/#!/medicine" >Medicine</a>
+            </li>
+
+            <li ng-if="loggedin">
                 <a href="http://localhost:8096/#!/profile">Profile</a>
             </li>
 
-            <li ng-if="!provera()" style="float: right !important;">
+            <li ng-if="!loggedin">
                 <a href="http://localhost:8096/#!/login">Login</a>
             </li>
 
-            <li ng-if="provera()" style="float: right !important;">
+            <li ng-if="loggedin">
                 <a ng-click="logout()">Logout</a>
             </li>
 

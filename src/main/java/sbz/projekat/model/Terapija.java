@@ -1,5 +1,7 @@
 package sbz.projekat.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,13 +12,14 @@ public class Terapija {
     @GeneratedValue
     private Long id;
 
-    @OneToMany
+    @ManyToMany
     private List<Lek> lekovi;
 
     @ManyToOne
     private Korisnik izdaoLekar;
 
     @ManyToOne
+    @JsonBackReference
     private Pacijent primio;
 
     public Terapija() {

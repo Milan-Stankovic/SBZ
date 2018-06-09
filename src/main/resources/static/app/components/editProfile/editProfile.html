@@ -1,30 +1,11 @@
 <div class="main">
     <div class="content1">
         <div class="service">
-
-            <button type="submit" style="float: right !important;" ng-click="editProfile()" class="btn btn-primary"   >
-                <img class="clearDelete" src="../../../assets/images/edit.png" width="15" height="15" title="Edit" alt="submit" />
-            </button>
-
             <h2> Profile </h2>
 
             <div class="image group">
 
-                <div ng-if="!edit" class="span_2_of_2">
-                    <span>Username :</span>
-                    <span style="color: #AEAEAE !important;"> &nbsp; {{user.username}} </span>
-                    <br/>
-                    <br/>
-                    <span>First name : </span>
-                    <span style="color: #AEAEAE !important;"> &nbsp; {{user.ime}}</span>
-                    <br/>
-                    <br/>
-                    <span>Last name : </span>
-                    <span style="color: #AEAEAE !important;"> &nbsp; {{user.prezime}}</span>
-                </div>
-
-
-                <div ng-if="edit" class="span_2_of_2">
+                <div class="span_2_of_2">
                     <span>Username : &nbsp;</span>
                     <input  type="text" style="color: #AEAEAE !important;" ng-model="user.username" disabled/>
                     <br/>

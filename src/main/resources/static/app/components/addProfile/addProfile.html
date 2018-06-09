@@ -1,0 +1,26 @@
+
+<div class="bg-agile">
+    <div class="book-appointment">
+        <h2>New Profile Information</h2>
+        <form>
+            <div class="left-agileits-w3layouts same">
+                <div class="gaps">
+                    <p>Username</p>
+                    <input type="text"  ng-model="user" />
+                </div>
+                <div class="gaps">
+                    <p>First name</p>
+                    <input type="text"  ng-model="first" />
+                </div>
+                <div class="gaps">
+                    <p>Last name</p>
+                    <input type="text" ng-model="last" />
+                </div>
+
+
+            </div>
+            <div class="clear"></div>
+            <input type="submit" value="Submit" ng-click="addUser(user, first, last)">
+        </form>
+    </div>
+</div>

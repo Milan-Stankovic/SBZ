@@ -2,10 +2,7 @@ package sbz.projekat.model;
 
 import sbz.projekat.model.enums.TipLeka;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -19,7 +16,7 @@ public class Lek {
 
     private TipLeka tip;
 
-    @OneToMany
+    @ManyToMany
     private List<Sastojak> sastojci;
 
     public Lek() {

@@ -1,0 +1,43 @@
+
+<div class="bg-agile">
+    <div class="book-appointment">
+        <h2>Edit Patient Information</h2>
+        <form>
+            <div class="left-agileits-w3layouts same">
+
+                <div class="span_2_of_2">
+                    <span>First name : &nbsp;</span>
+                    <input  type="text" style="color: #AEAEAE !important;" ng-model="patient.ime" />
+                    <br/>
+                    <br/>
+                    <span>Last name : &nbsp; </span>
+                    <input type="text" style="color: #AEAEAE !important;" ng-model="patient.prezime" />
+                    <br/>
+                    <br/>
+                    <span>Insurance number :  &nbsp;</span>
+                    <input type="text" style="color: #AEAEAE !important;" ng-model="patient.brojZdravstveneKartice" />
+                    <br/>
+                    <br/>
+                </div>
+
+            </div>
+
+            <div class="right-agileits-w3layouts same">
+                <div class="gaps">
+                    <p>Allergies : </p>
+
+                    <div ng-repeat="sastojak in sastojci track by $index">
+                        <br/>
+                        <input type="checkbox" ng-model="sastojak.izabrano" /> <span style="color: white; font-size: 15px" >{{sastojak.naziv}} </span>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="clear"></div>
+            <input type="submit" value="Submit" ng-click="saveEdit(patient.brojZdravstveneKartice, patient.ime, patient.prezime, patient.id)">
+        </form>
+    </div>
+</div>

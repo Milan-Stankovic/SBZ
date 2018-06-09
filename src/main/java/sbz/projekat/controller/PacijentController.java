@@ -19,8 +19,11 @@ public class PacijentController {
     @RequestMapping(method = RequestMethod.GET, value = "/patient")
     public List<Pacijent> getAll(){ return pService.getAll(); }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/patient/{id}")
-    public Pacijent getOne(@PathVariable String id){ return pService.getPacijentZdravstvena(id);  }
+    @RequestMapping(method = RequestMethod.GET, value = "/patient/{knjizica}")
+    public Pacijent getOne(@PathVariable String knjizica){ return pService.getPacijentZdravstvena(knjizica);  }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/patient/get/{id}")
+    public Pacijent getOneId(@PathVariable Long id){ return pService.getOne(id);  }
 
     @RequestMapping(method = RequestMethod.GET, value = "/patient/{ime}/{prezime}")
     public List<Pacijent> getImePrezime(@PathVariable String ime, @PathVariable String prezime){ return pService.getAllImePrezime(ime, prezime); }

@@ -218,15 +218,15 @@ public class Converter {
 
             is = new IstorijaBolesti();
 
-            ArrayList<Terapija> terapije = new ArrayList<>();
+            ArrayList<Lek> terapije = new ArrayList<>();
             ArrayList<Simptom> simptomi = new ArrayList<>();
             ArrayList<Bolest> bolesti = new ArrayList<>();
 
             for (Long id:ib.getTerapije()) {
                 if(id>0){
-                    Terapija t = new Terapija();
-                    t.setId(id);
-                    terapije.add(t);
+                    Lek l = new Lek();
+                    l.setId(id);
+                    terapije.add(l);
                 }
 
             }
@@ -280,7 +280,7 @@ public class Converter {
             p = new Pacijent();
             p.setIme(pac.getIme());
             p.setBrojZdravstveneKartice(pac.getBrojZdravstveneKartice());
-            p.setPrezime(p.getPrezime());
+            p.setPrezime(pac.getPrezime());
             p.setMonitoring(false);
             ArrayList<Sastojak> alergije = new ArrayList<>();
 

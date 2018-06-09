@@ -6,7 +6,9 @@ import sbz.projekat.dodatno.Converter;
 import sbz.projekat.dto.KorisnikDTO;
 import sbz.projekat.dto.LoginDTO;
 import sbz.projekat.model.Korisnik;
+import sbz.projekat.model.Terapija;
 import sbz.projekat.repostory.KorisnikRepository;
+import sbz.projekat.repostory.TerapijaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,9 @@ public class KorisnikService {
 
     @Autowired
     private KorisnikRepository korRepo;
+
+    @Autowired
+    private TerapijaRepository tRepo;
 
     public Korisnik addKorisnik(KorisnikDTO kor){
         Korisnik k = Converter.converterKorisnika(kor);
@@ -86,6 +91,8 @@ public class KorisnikService {
     public void removeKorisnik(Long id){
         Korisnik k = new Korisnik();
         k.setId(id);
+
+
         korRepo.delete(k);
     }
 

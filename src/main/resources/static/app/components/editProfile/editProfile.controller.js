@@ -3,19 +3,13 @@
 
     angular
         .module('app')
-        .controller('profileController', profileController);
+        .controller('editProfileController', editProfileController);
 
-    profileController.$inject = ['$location', '$scope', '$rootScope','$http', '$window', '$cookies'];
-    function profileController($location, $scope, $rootScope, $http, $window, $cookies) {
-        var pc = this;
+    editProfileController.$inject = ['$location', '$scope', '$rootScope','$http', '$window', '$cookies', '$stateParams'];
+    function editProfileController($location, $scope, $rootScope, $http, $window, $cookies, $stateParams) {
+        var epc = this;
 
         $scope.user = {};
-
-        $scope.edit = false;
-
-        $scope.editProfile = function(){
-            $scope.edit=!$scope.edit;
-        }
 
         $scope.saveEdit = function (username, firstname, lastname, password, password2, tip, id) {
 
@@ -55,20 +49,19 @@
 
 
                     if(temp != null){
-                        $scope.user=temp;
                         alert("Edit successful");
+                        $location.path("/admin");
                     }else{
                         alert("Edit not successful, please input valid values");
                     }
 
-                    $scope.edit=false;
 
 
                 });
 
 
             }else{
-                alert("All fields must be entered, please repeat your password");
+                alert("All fields must be entered, please repeat the password");
             }
 
         }
@@ -76,15 +69,22 @@
 
 
         var init = function (){
+
+            console.log("UPO U INIT");
+            var userId = $stateParams.id;
             var userName = $cookies.get('user');
-            if($cookies.get('user') == null){
+            if($cookies.get('user') == null || userId == undefined){
                 $location.path("/home")
             }else{
+
+
+
                 $http({
                     method: 'GET',
-                    url: 'http://localhost:8096/users/'+userName
+                    url: 'http://localhost:8096/users/get/'+userId
                 }).then(function successCallback(response){
                     $scope.user = response.data;
+                    console.log($scope.user);
                 });
             }
 

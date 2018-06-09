@@ -65,6 +65,10 @@
                         path: 'core'
                     });
                     console.log("Uspesno logovanje: " + $cookies.get('user') + ", id: " +  $cookies.get('id'));
+
+                    $rootScope.$broadcast('login');
+
+
                     $location.path("/home");
                 }
 

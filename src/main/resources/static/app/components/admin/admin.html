@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="main">
+    <div class="content1">
+        <div class="service">
 
-</body>
-</html>
+
+            <button type="submit" style="float: right !important;" ng-click="addUser()" class="btn btn-primary"   >
+                <img class="clearDelete" src="../../../assets/images/add.png" width="15" height="15" title="Add" alt="submit" />
+            </button>
+
+            <h2> Users </h2>
+
+            <div ng-repeat="user in users track by $index" class="image group">
+
+                <div class="span_2_of_2">
+                    <span>Username :</span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{user.username}} </span>
+
+                    <button type="submit" style="float: right !important;" ng-click="editProfile(user.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/edit.png" width="15" height="15" title="Edit" alt="submit" />
+                    </button>
+                    <button type="submit" style="float: right !important;" ng-confirm-click="Are you sure to delete this profile ?" confirmed-click="deleteProfile(user.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/trash.png" width="15" height="15" title="Delete" alt="submit" />
+                    </button>
+
+                    <br/>
+                    <br/>
+                    <span>First name : </span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{user.ime}}</span>
+                    <br/>
+                    <br/>
+                    <span>Last name : </span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{user.prezime}}</span>
+                </div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</div>

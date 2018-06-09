@@ -1,9 +1,9 @@
 package sbz.projekat.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -19,10 +19,11 @@ public class Pacijent {
 
     private String brojZdravstveneKartice;
 
-    @OneToMany
+
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     private List<IstorijaBolesti> istorija;
 
-    @OneToMany
+    @ManyToMany
     private List<Sastojak> alergije;
 
     private boolean monitoring;

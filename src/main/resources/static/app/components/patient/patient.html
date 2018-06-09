@@ -1,0 +1,98 @@
+<div class="main">
+    <div class="content1">
+        <div class="service">
+
+
+            <button type="submit" style="float: right !important;" ng-click="addPatient()" class="btn btn-primary"   >
+                <img class="clearDelete" src="../../../assets/images/add.png" width="15" height="15" title="Add" alt="submit" />
+            </button>
+
+            <h2> Patients </h2>
+
+            <div ng-repeat="patient in patients track by $index" class="image group">
+
+                <div class="span_2_of_2">
+                    <span>Insurance number :</span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{patient.brojZdravstveneKartice}} </span>
+
+                    <button type="submit" style="float: right !important;" ng-click="more($index)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/more.png" width="15" height="15" title="More" alt="submit" />
+                    </button>
+
+                    <button type="submit" style="float: right !important;" ng-click="diagnose(patient.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/cure.svg" width="15" height="15" title="Diagnose" alt="submit" />
+                    </button>
+
+                    <button type="submit" style="float: right !important;" ng-click="editPatient(patient.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/edit.png" width="15" height="15" title="Edit" alt="submit" />
+                    </button>
+                    <button type="submit" style="float: right !important;" ng-confirm-click="Are you sure to delete this patient ?" confirmed-click="deletePatient(patient.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/trash.png" width="15" height="15" title="Delete" alt="submit" />
+                    </button>
+
+                    <br/>
+                    <br/>
+                    <span>First name : </span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{patient.ime}}</span>
+                    <br/>
+                    <br/>
+                    <span>Last name : </span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{patient.prezime}}</span>
+
+                    <div ng-if="patient.more">
+                        <br/>
+                        <br/>
+                        <span>Alergies : </span>
+                        <div  ng-repeat="alergija in patient.alergije track by $index">
+                            <br/>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{alergija.naziv}}</span>
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                        <h3>Medical history : </h3>
+                        <div  ng-repeat="dijagnoza in patient.istorija track by $index">
+                            <br/>
+                            <span>Date : </span>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{format(dijagnoza.vreme)}}</span>
+                            <br/>
+                            <br/>
+
+                            <span>Symptoms : </span>
+                            <div  ng-repeat="simptom in dijagnoza.simptomi track by $index">
+                                <br/>
+                                <span style="color: #AEAEAE !important;"> &nbsp; {{simptom.naziv}}</span>
+                            </div>
+                            <br/>
+
+                            <span>Illnesses : </span>
+                            <div  ng-repeat="bolest in dijagnoza.bolesti track by $index">
+                                <br/>
+                                <span style="color: #AEAEAE !important;"> &nbsp; {{bolest.naziv}}</span>
+                            </div>
+                            <br/>
+
+                            <span>Therapies  : </span>
+                            <div  ng-repeat="terapija in dijagnoza.terapije track by $index">
+                                <br/>
+                                <span style="color: #AEAEAE !important;"> &nbsp; {{terapija.naziv}}</span>
+                            </div>
+                            <br/>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</div>

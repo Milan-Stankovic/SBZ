@@ -14,24 +14,24 @@ public class IstorijaBolesti {
 
     private Date vreme;
 
-    @OneToMany
+    @ManyToMany
     private List<Simptom> simptomi;
 
-    @OneToMany
+    @ManyToMany
     private List<Bolest> bolesti;
 
-    @OneToMany
-    private List<Terapija> terapije;
+    @ManyToMany
+    private List<Lek> terapija;
 
     public IstorijaBolesti() {
     }
 
-    public List<Terapija> getTerapije() {
-        return terapije;
+    public List<Lek> getTerapije() {
+        return terapija;
     }
 
-    public void setTerapije(List<Terapija> terapije) {
-        this.terapije = terapije;
+    public void setTerapije(List<Lek> terapija) {
+        this.terapija = terapija;
     }
 
     public Long getId() {

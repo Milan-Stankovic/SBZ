@@ -1,0 +1,40 @@
+
+<div class="bg-agile">
+    <div class="book-appointment">
+        <h2>New Patient Information</h2>
+        <form>
+            <div class="left-agileits-w3layouts same">
+                <div class="gaps">
+                    <p>First name</p>
+                    <input type="text"  ng-model="first" />
+                </div>
+                <div class="gaps">
+                    <p>Last name</p>
+                    <input type="text"  ng-model="lastn" />
+                </div>
+                <div class="gaps">
+                    <p>Insurance number</p>
+                    <input type="text" ng-model="num" />
+                </div>
+
+            </div>
+
+            <div class="right-agileits-w3layouts same">
+                <div class="gaps">
+                    <p>Allergies </p>
+
+                    <div ng-repeat="sastojak in sastojci track by $index">
+                        <br/>
+                        <input type="checkbox" ng-model="sastojak.izabrano" /> <span style="color: white; font-size: 15px" >{{sastojak.naziv}} </span>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="clear"></div>
+            <input type="submit" value="Submit" ng-click="addPatient(num, first, lastn)">
+        </form>
+    </div>
+</div>

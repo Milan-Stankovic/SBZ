@@ -6,13 +6,8 @@ import sbz.projekat.dodatno.Converter;
 import sbz.projekat.dto.IstorijaBolestiDTO;
 import sbz.projekat.dto.PacijentDTO;
 import sbz.projekat.dto.SastojakDTO;
-import sbz.projekat.model.IstorijaBolesti;
-import sbz.projekat.model.Pacijent;
-import sbz.projekat.model.Sastojak;
-import sbz.projekat.repostory.IstorijaBolestiRepository;
-import sbz.projekat.repostory.PacijentRepository;
-import sbz.projekat.repostory.SastojakRepository;
-import sbz.projekat.repostory.SimptomRepository;
+import sbz.projekat.model.*;
+import sbz.projekat.repostory.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +24,8 @@ public class PacijentService {
 
     @Autowired
     private SastojakRepository sRepo;
+
+
 
     public List<Pacijent> getAll(){
         List<Pacijent> pacijenti = new ArrayList<>();
@@ -89,13 +86,27 @@ public class PacijentService {
     public void removePacijent(Long id){
         Pacijent p = new Pacijent();
         p.setId(id);
-        pRepo.delete(p);
+
+         pRepo.delete(p);
+
+
     }
 
     public Pacijent addPacijent(PacijentDTO pac){
         Pacijent p = Converter.convertPacijent(pac);
         if(p != null)
             p = pRepo.save(p);
+
+        return p;
+    }
+
+    public Pacijent getOne(Long id){
+        Pacijent p = null;
+
+        Optional<Pacijent> op = pRepo.findById(id);
+        if(op.isPresent()){
+            p=op.get();
+        }
 
         return p;
     }

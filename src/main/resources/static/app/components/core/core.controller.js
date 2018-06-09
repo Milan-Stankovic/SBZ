@@ -14,20 +14,44 @@
         $scope.isAdmin = false;
         $scope.loggedin = false;
 
+        $rootScope.$on('login', function(event, data) {
+           $scope.provera();
+           $scope.proveraAdmin();
+        });
+
+
         $scope.logout = function(){
             $cookies.remove('id');
             $cookies.remove('user');
             $location.path("/home");
+            $scope.provera();
+            $scope.proveraAdmin();
+
         }
 
 
         $scope.provera = function(){
 
+
+            $scope.loggedin=false;
             var b = false;
             userCookie = $cookies.get('user');
             userId = $cookies.get('id');
             if(userCookie && userId)
                 b=true;
+            if(b)
+                $scope.loggedin=true;
+
+            return b;
+        }
+
+        $scope.doktorJe= function(){
+
+            var b=false;
+
+            if($scope.loggedin)
+                if(!$scope.isAdmin)
+                    b=true;
 
             return b;
         }
@@ -35,10 +59,10 @@
         $scope.proveraAdmin = function(){
 
             var b = false;
+            console.log("DA LI TO ULAZI OVDEEEE ??????");
 
-            if($scope.isAdmin){
-               b=true;
-            }else{
+
+                $scope.isAdmin=false;
                 userCookie = $cookies.get('user');
                 userId = $cookies.get('id');
                 if(userCookie && userId){
@@ -50,15 +74,17 @@
 
                         $scope.korisnik = response.data;
 
-                        if(response.data!="")
+                        if(response.data!=null)
                             if($scope.korisnik.tip == "ADMIN") {
                                 $scope.isAdmin = true;
                                 b=true;
+                            }else{
+                                $scope.isAdmin = false;
                             }
                     });
 
 
-                }
+
             }
 
 
@@ -82,6 +108,7 @@
                      url: 'http://localhost:8096/users/get/'+userId
                  }).then(function successCallback(response){
 
+                     console.log("GETUJE IZ INITA");
                      $scope.korisnik = response.data;
 
                      if(response.data!="")
