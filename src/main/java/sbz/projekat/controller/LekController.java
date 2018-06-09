@@ -20,6 +20,9 @@ public class LekController {
     @RequestMapping(method = RequestMethod.GET, value = "/medicine/{name}")
     public Lek getOne(@PathVariable String name){ return lService.getLek(name); }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/medicine/get/{id}")
+    public Lek getOneId(@PathVariable Long id){ return lService.getLekId(id); }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/medicine/{id}")
     public void removeOne(@PathVariable Long id){ lService.removeLek(id); }
 

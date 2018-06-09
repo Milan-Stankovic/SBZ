@@ -1,0 +1,68 @@
+<div class="main">
+    <div class="content1">
+        <div class="service">
+
+
+            <button type="submit" style="float: right !important;" ng-click="addIllness()" class="btn btn-primary"   >
+                <img class="clearDelete" src="../../../assets/images/add.png" width="15" height="15" title="Add" alt="submit" />
+            </button>
+
+            <h2> Illness </h2>
+
+            <div ng-repeat="bolest in illness track by $index" class="image group">
+
+                <div class="span_2_of_2">
+                    <span>Name :</span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{bolest.naziv}} </span>
+
+                    <button type="submit" style="float: right !important;" ng-click="more($index)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/more.png" width="15" height="15" title="More" alt="submit" />
+                    </button>
+
+                    <button type="submit" style="float: right !important;" ng-click="editIllness(bolest.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/edit.png" width="15" height="15" title="Edit" alt="submit" />
+                    </button>
+                    <button type="submit" style="float: right !important;" ng-confirm-click="Are you sure to delete this illness ?" confirmed-click="deleteIllness(bolest.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/trash.png" width="15" height="15" title="Delete" alt="submit" />
+                    </button>
+
+
+
+
+                    <div ng-if="bolest.more">
+
+                        <br/>
+                        <br/>
+                        <h3>Symptoms</h3>
+
+                        <br/>
+                        <span>Specific : </span>
+                        <div  ng-repeat="simptom in bolest.specificni track by $index">
+                            <br/>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{simptom.naziv}}</span>
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                        <span>Generic : </span>
+                        <div  ng-repeat="simptom in bolest.opsti track by $index">
+                            <br/>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{simptom.naziv}}</span>
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</div>

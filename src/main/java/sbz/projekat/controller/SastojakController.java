@@ -20,6 +20,9 @@ public class SastojakController {
     @RequestMapping(method = RequestMethod.GET, value = "/ingredient/{name}")
     public Sastojak getOne(@PathVariable String name){ return sService.getSastojak(name); }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/ingredient/get/{id}")
+    public Sastojak getOneId(@PathVariable Long id){ return sService.getOneId(id); }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/ingredient/{id}")
     public void removeOne(@PathVariable Long id){ sService.removeSastojak(id); }
 

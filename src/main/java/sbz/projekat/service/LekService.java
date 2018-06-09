@@ -9,6 +9,7 @@ import sbz.projekat.repostory.LekRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LekService {
@@ -26,6 +27,18 @@ public class LekService {
         return lRepo.findByNaziv(ime);
     }
 
+    public Lek getLekId(Long id){
+        Lek l = null;
+
+        Optional<Lek> op = lRepo.findById(id);
+        if(op.isPresent()){
+            l=op.get();
+        }
+
+        return l;
+    }
+
+
     public void removeLek(Long id){
         Lek l = new Lek();
         l.setId(id);
@@ -34,8 +47,13 @@ public class LekService {
 
     public Lek addLek(LekDTO l){
         Lek lek = Converter.convertLek(l);
-        if(lek != null)
-            lek = lRepo.save(lek);
+        if(lek != null){
+
+            Lek temp = lRepo.findByNaziv(lek.getNaziv());
+            if(temp == null){
+                lek = lRepo.save(lek);
+            }
+        }
 
         return lek;
     }

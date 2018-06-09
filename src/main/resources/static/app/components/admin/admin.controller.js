@@ -43,6 +43,8 @@
                     }
                 }
                 alert("USER DELETED");
+            }, function errorCallback(response) {
+                alert("The account is being used and cannot be deleted");
             });
 
 

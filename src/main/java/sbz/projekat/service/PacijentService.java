@@ -94,9 +94,14 @@ public class PacijentService {
 
     public Pacijent addPacijent(PacijentDTO pac){
         Pacijent p = Converter.convertPacijent(pac);
-        if(p != null)
-            p = pRepo.save(p);
+        if(p != null){
 
+            Pacijent p2 = pRepo.findByBrojZdravstveneKartice(p.getBrojZdravstveneKartice());
+            if(p2 == null){
+                p = pRepo.save(p);
+            }
+
+        }
         return p;
     }
 

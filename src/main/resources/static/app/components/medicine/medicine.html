@@ -1,0 +1,59 @@
+<div class="main">
+    <div class="content1">
+        <div class="service">
+
+
+            <button type="submit" style="float: right !important;" ng-click="addMedicine()" class="btn btn-primary"   >
+                <img class="clearDelete" src="../../../assets/images/add.png" width="15" height="15" title="Add" alt="submit" />
+            </button>
+
+            <h2> Medicine </h2>
+
+            <div ng-repeat="lek in medicine track by $index" class="image group">
+
+                <div class="span_2_of_2">
+                    <span>Name :</span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{lek.naziv}} </span>
+
+                    <button type="submit" style="float: right !important;" ng-click="more($index)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/more.png" width="15" height="15" title="More" alt="submit" />
+                    </button>
+
+                    <button type="submit" style="float: right !important;" ng-click="editMedicine(lek.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/edit.png" width="15" height="15" title="Edit" alt="submit" />
+                    </button>
+                    <button type="submit" style="float: right !important;" ng-confirm-click="Are you sure to delete this medicine ?" confirmed-click="deleteMedicine(lek.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/trash.png" width="15" height="15" title="Delete" alt="submit" />
+                    </button>
+
+                    <br/>
+                    <br/>
+                    <span>Type : </span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{lek.tip}}</span>
+                    <br/>
+                    <br/>
+
+                    <div ng-if="lek.more">
+                        <br/>
+                        <br/>
+                        <span>Ingredients : </span>
+                        <div  ng-repeat="sastojak in lek.sastojci track by $index">
+                            <br/>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{sastojak.naziv}}</span>
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</div>

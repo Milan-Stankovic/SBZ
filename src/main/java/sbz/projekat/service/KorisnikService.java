@@ -25,8 +25,13 @@ public class KorisnikService {
 
     public Korisnik addKorisnik(KorisnikDTO kor){
         Korisnik k = Converter.converterKorisnika(kor);
-        if(k != null)
-            k= korRepo.save(k);
+        if(k != null){
+            Korisnik k2 = korRepo.findByUsername(k.getUsername());
+            if(k2 == null){
+                k= korRepo.save(k);
+            }
+        }
+
         return k;
     }
 
@@ -41,8 +46,6 @@ public class KorisnikService {
 
     public Korisnik login(LoginDTO l){
         Korisnik k = null;
-
-
         if(l != null){
 
             if(l.getPassword() !=null && l.getUsername() != null){

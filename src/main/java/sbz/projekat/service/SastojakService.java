@@ -9,6 +9,7 @@ import sbz.projekat.repostory.SastojakRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SastojakService {
@@ -32,10 +33,26 @@ public class SastojakService {
         sRepo.delete(s);
     }
 
+    public Sastojak getOneId(Long id){
+        Sastojak s = null;
+
+        Optional<Sastojak> op = sRepo.findById(id);
+        if(op.isPresent()){
+            s=op.get();
+
+        }
+        return s;
+    }
+
     public Sastojak addSastojak(SastojakDTO s){
         Sastojak s2 = Converter.convertSastojka(s);
-        if(s2 != null)
-            s2 = sRepo.save(s2);
+        if(s2 != null){
+            Sastojak s3= sRepo.findByNaziv(s2.getNaziv());
+            if(s3 == null){
+                s2 = sRepo.save(s2);
+            }
+        }
+
 
         return s2;
     }

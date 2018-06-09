@@ -9,6 +9,7 @@ import sbz.projekat.repostory.BolestRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BolestService {
@@ -26,11 +27,28 @@ public class BolestService {
         return bRepo.findByNaziv(naziv);
     }
 
+    public Bolest getOneId(Long id){
+        Bolest b = null;
+
+        Optional<Bolest> op = bRepo.findById(id);
+        if(op.isPresent()){
+            b=op.get();
+        }
+
+        return b;
+    }
+
 
     public Bolest addBolest(BolestDTO b){
         Bolest bol= Converter.convertBolest(b);
-        if(bol!=null)
-            bol = bRepo.save(bol);
+        if(bol!=null){
+            Bolest temp = bRepo.findByNaziv(bol.getNaziv());
+            if(temp==null){
+                bol = bRepo.save(bol);
+            }
+
+        }
+
 
         return bol;
     }
@@ -45,6 +63,8 @@ public class BolestService {
     public Bolest editBolest(BolestDTO b, Long id){
         Bolest bol= Converter.convertBolest(b);
         if(bol!=null && id>0){
+            System.out.println(bol.getNaziv());
+
             bol.setId(id);
             bol = bRepo.save(bol);
         }

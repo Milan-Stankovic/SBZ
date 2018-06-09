@@ -21,6 +21,9 @@ public class SimptomController {
     @RequestMapping(method = RequestMethod.GET, value = "/symptom/{name}")
     public Simptom getOne(@PathVariable String name){ return sService.getSimptom(name); }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/symptom/get/{id}")
+    public Simptom getOneId(@PathVariable Long id){ return sService.getOneId(id); }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/symptom/{id}")
     public void removeOne(@PathVariable Long id){ sService.removeSimptom(id); }
 

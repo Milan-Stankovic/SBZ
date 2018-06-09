@@ -1,0 +1,47 @@
+
+<div class="bg-agile">
+    <div class="book-appointment">
+        <h2>Edit Illness Information</h2>
+        <form>
+            <div class="left-agileits-w3layouts same">
+
+                <div class="span_2_of_2">
+                    <span>Name : &nbsp;</span>
+                    <input  type="text" style="color: #AEAEAE !important;" ng-model="illness.naziv" />
+                    <br/>
+                    <br/>
+                </div>
+
+                <div class="gaps">
+                    <p>Generic symptoms : </p>
+
+                    <div ng-repeat="simptom in symptom track by $index">
+                        <br/>
+                        <input type="checkbox" ng-model="simptom.izabranoOpste" /> <span style="color: white; font-size: 15px" >{{simptom.naziv}} </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="right-agileits-w3layouts same">
+                <div class="gaps">
+                    <p>Specific symptoms : </p>
+
+                    <div ng-repeat="simptom in symptom track by $index">
+                        <br/>
+                        <input type="checkbox" ng-model="simptom.izabranoSpecificno" /> <span style="color: white; font-size: 15px" >{{simptom.naziv}} </span>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="clear"></div>
+            <input type="submit" value="Submit" ng-click="saveEdit(illness.naziv, illness.id)">
+        </form>
+    </div>
+</div>

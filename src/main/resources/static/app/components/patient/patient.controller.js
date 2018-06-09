@@ -35,7 +35,9 @@
                         break;
                     }
                 }
-                alert("PATIENT DELETED");
+                alert("Patient deleted");
+            }, function errorCallback(response) {
+                alert("The patients account is being used and cannot be deleted");
             });
 
 

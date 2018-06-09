@@ -3,26 +3,26 @@
 
     angular
         .module('app')
-        .controller('addPatientController', addPatientController);
+        .controller('addMedicineController', addMedicineController);
 
-    addPatientController.$inject = ['$location', '$scope', '$rootScope','$http', '$window', '$cookies'];
-    function addPatientController($location, $scope, $rootScope, $http, $window, $cookies) {
-        var apac = this;
+    addMedicineController.$inject = ['$location', '$scope', '$rootScope','$http', '$window', '$cookies'];
+    function addMedicineController($location, $scope, $rootScope, $http, $window, $cookies) {
+        var amc = this;
 
         $scope.sastojci=[];
 
-        $scope.addPatient = function (num, firstname, lastname) {
+        $scope.addMedicine = function (naziv, tip) {
 
-          //  console.log(lastname);
+            var b= false;
 
-            var b=false;
-            if(num)
-                if(firstname)
-                    if(lastname)
-                        if(num.length > 0)
-                            if(firstname.length > 0)
-                                if(lastname.length > 0)
-                                    b=true;
+            console.log(tip);
+
+            if(naziv)
+                if(tip)
+                    if(naziv.length>0)
+                        if(tip.length>0)
+                            b=true;
+
 
             if(b){
 
@@ -38,17 +38,16 @@
 
 
                 var data ={
-                    "brojZdravstveneKartice" : num,
-                    "ime" : firstname,
-                    "prezime" : lastname,
-                    "alergije" : niz
+                    "naziv" : naziv,
+                    "tip" : tip,
+                    "sastojci" : niz
 
                 }
 
-            //    console.log(data);
+                //    console.log(data);
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:8096/patient/add',
+                    url: 'http://localhost:8096/medicine/add',
                     data: data
                 }).then(function successCallback(response){
                     var temp = response.data;
@@ -56,22 +55,18 @@
                     if(temp != null){
                         //$scope.user=temp;
                         alert("Add successful");
-                        $location.path("/patient");
+                        $location.path("/medicine");
                     }else{
                         alert("Add not successful, please input valid values");
                     }
 
-
-
                 });
-
 
             }else{
                 alert("All fields must be entered");
             }
 
         }
-
 
 
         var init = function (){
@@ -90,7 +85,6 @@
                 }
 
             });
-
 
         };
         init();

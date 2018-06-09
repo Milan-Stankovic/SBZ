@@ -56,6 +56,70 @@
           controller: 'editPatientController',
           controllerAs: 'epac',
           params: {id :null}
+      }).state('core.symptom', {
+          url: 'symptom',
+          templateUrl: 'app/components/symptom/symptom.html',
+          controller: 'symptomController',
+          controllerAs: 'sc'
+      }).state('core.addSymptom', {
+          url: 'addSymptom',
+          templateUrl: 'app/components/addSymptom/addSymptom.html',
+          controller: 'addSymptomController',
+          controllerAs: 'asc'
+      }).state('core.editSymptom', {
+          url: 'editSymptom',
+          templateUrl: 'app/components/editSymptom/editSymptom.html',
+          controller: 'editSymptomController',
+          controllerAs: 'esc',
+          params: {id :null}
+      }).state('core.medicine', {
+          url: 'medicine',
+          templateUrl: 'app/components/medicine/medicine.html',
+          controller: 'medicineController',
+          controllerAs: 'mc'
+      }).state('core.addMedicine', {
+          url: 'addMedicine',
+          templateUrl: 'app/components/addMedicine/addMedicine.html',
+          controller: 'addMedicineController',
+          controllerAs: 'amc'
+      }).state('core.editMedicine', {
+          url: 'editMedicine',
+          templateUrl: 'app/components/editMedicine/editMedicine.html',
+          controller: 'editMedicineController',
+          controllerAs: 'emc',
+          params: {id :null}
+      }).state('core.illness', {
+          url: 'illness',
+          templateUrl: 'app/components/illness/illness.html',
+          controller: 'illnessController',
+          controllerAs: 'ilc'
+      }).state('core.addIllness', {
+          url: 'addIllness',
+          templateUrl: 'app/components/addIllness/addIllness.html',
+          controller: 'addIllnessController',
+          controllerAs: 'ailc'
+      }).state('core.editIllness', {
+          url: 'editIllness',
+          templateUrl: 'app/components/editIllness/editIllness.html',
+          controller: 'editIllnessController',
+          controllerAs: 'ailc',
+          params: {id :null}
+      }).state('core.ingredient', {
+          url: 'ingredient',
+          templateUrl: 'app/components/ingredient/ingredient.html',
+          controller: 'ingredientController',
+          controllerAs: 'ic'
+      }).state('core.addIngredient', {
+          url: 'addIngredient',
+          templateUrl: 'app/components/addIngredient/addIngredient.html',
+          controller: 'addIngredientController',
+          controllerAs: 'aic'
+      }).state('core.editIngredient', {
+          url: 'editIngredient',
+          templateUrl: 'app/components/editIngredient/editIngredient.html',
+          controller: 'editIngredientController',
+          controllerAs: 'eic',
+          params: {id :null}
       }).state('core.login', {
           url: 'login',
           templateUrl: 'app/components/login/login.html',

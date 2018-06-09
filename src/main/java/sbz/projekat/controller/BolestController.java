@@ -24,18 +24,20 @@ public class BolestController {
         return bService.getOne(name);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/illness/get/{id}")
+    public Bolest getOneId(@PathVariable Long id){
+        return bService.getOneId(id);
+    }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/illness/{id}")
     public void removeOne(@PathVariable Long id){
         bService.removeBolest(id);
     }
 
-
     @RequestMapping(method = RequestMethod.POST, value = "/illness/add")
     public Bolest add(@RequestBody BolestDTO b){
          return bService.addBolest(b);
     }
-
-
 
     @RequestMapping(method = RequestMethod.PUT, value = "/illness/edit/{id}")
     public Bolest edit(@RequestBody BolestDTO b, @PathVariable Long id){

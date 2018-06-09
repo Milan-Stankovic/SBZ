@@ -42,7 +42,7 @@ public class Converter {
 
         if(checkBolest(bolest)){
             b= new Bolest();
-            b.setNaziv(b.getNaziv());
+            b.setNaziv(bolest.getNaziv());
 
             ArrayList<Simptom> opsti = new ArrayList<>();
             ArrayList<Simptom> specificni = new ArrayList<>();

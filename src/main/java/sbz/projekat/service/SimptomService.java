@@ -9,6 +9,7 @@ import sbz.projekat.repostory.SimptomRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SimptomService {
@@ -34,10 +35,29 @@ public class SimptomService {
 
     public Simptom addSimptom(SimptomiDTO s){
         Simptom s2 = Converter.convertSimptom(s);
-        if(s2 != null)
-            s2 = sRepo.save(s2);
+        if(s2 != null){
+
+            Simptom s3 = sRepo.findByNaziv(s2.getNaziv());
+            if(s3 == null){
+                s2 = sRepo.save(s2);
+            }
+
+        }
+
 
         return s2;
+    }
+
+
+    public Simptom getOneId(Long id){
+        Simptom s = null;
+
+        Optional<Simptom> op = sRepo.findById(id);
+        if(op.isPresent()){
+            s=op.get();
+
+        }
+        return s;
     }
 
 

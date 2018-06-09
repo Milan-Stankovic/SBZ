@@ -1,0 +1,31 @@
+<div class="main">
+    <div class="content1">
+        <div class="service">
+
+
+            <button type="submit" style="float: right !important;" ng-click="addIngredient()" class="btn btn-primary"   >
+                <img class="clearDelete" src="../../../assets/images/add.png" width="15" height="15" title="Add" alt="submit" />
+            </button>
+
+            <h2> Ingredients </h2>
+
+            <div ng-repeat="ingredient in ingredients track by $index" class="image group">
+
+                <div class="span_2_of_2">
+                    <span>Name :</span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{ingredient.naziv}} </span>
+
+                    <button type="submit" style="float: right !important;" ng-click="editIngredient(ingredient.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/edit.png" width="15" height="15" title="Edit" alt="submit" />
+                    </button>
+                    <button type="submit" style="float: right !important;" ng-confirm-click="Are you sure to delete this ingredient?" confirmed-click="deleteIngredient(ingredient.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/trash.png" width="15" height="15" title="Delete" alt="submit" />
+                    </button>
+
+                </div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
