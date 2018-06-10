@@ -1,0 +1,46 @@
+<div class="main">
+    <div class="content1">
+        <div class="service">
+
+            <h2> Illness </h2>
+
+            <div class="image group">
+
+                <div class="span_2_of_2">
+                    <span>Name :</span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{bolest.naziv}} </span>
+
+                        <br/>
+                        <br/>
+                        <h3>Symptoms</h3>
+
+                        <br/>
+                        <span>Specific : </span>
+                        <div  ng-repeat="simptom in bolest.specificni track by $index">
+                            <br/>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{simptom.naziv}}</span>
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                        <span>Generic : </span>
+                        <div  ng-repeat="simptom in bolest.opsti track by $index">
+                            <br/>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{simptom.naziv}}</span>
+                        </div>
+
+                        <br/>
+                        <br/>
+
+
+
+
+
+                </div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</div>

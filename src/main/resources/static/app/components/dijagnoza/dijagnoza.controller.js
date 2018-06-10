@@ -13,8 +13,56 @@
         $scope.patient = {};
         $scope.symptom=[];
 
+        $scope.lekovi = [];
+        $scope.lekoviNajverovatnije =[];
+        $scope.lekoviSvi=[];
+
+        $scope.bolesti = [];
+        $scope.bolestiSve = [];
+        $scope.verovatnaBolest ={};
 
 
+
+        $scope.pickNajverovatnija =false;
+        $scope.pickLicno =false;
+        $scope.pickSveMoguce = false;
+        
+        $scope.najverovatnije = function () {
+            $scope.pickNajverovatnija = !$scope.pickNajverovatnija;
+            $scope.pickLicno =false;
+            $scope.pickSveMoguce = false;
+        }
+        
+        $scope.sveMoguce = function () {
+            $scope.pickNajverovatnija =!$scope.pickNajverovatnija;
+            $scope.pickLicno =false;
+            $scope.pickSveMoguce = false;
+        }
+        
+        $scope.proveriBolest = function (id) {
+            $window.open('http://localhost:8096/#!/checkIlness/'+id, '_blank');
+        }
+        
+        $scope.licno = function () {
+
+            $scope.pickNajverovatnija =false;
+            $scope.pickLicno = !$scope.pickLicno;
+            $scope.pickSveMoguce = false;
+        }
+
+
+        $scope.diagnoseSve = function () {
+            
+        }
+        
+        $scope.diagnoseNajverovatnije = function () {
+            
+        }
+        
+        $scope.diagnose = function () {
+            
+        }
+        
 
         var init = function (){
 

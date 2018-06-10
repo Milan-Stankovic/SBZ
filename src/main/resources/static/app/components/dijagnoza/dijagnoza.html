@@ -31,12 +31,116 @@
                         </div>
 
 
+                    <div ng-if="pickLicno">
+                        <br/>
+                        <br/>
 
+                        <p>Illnesses : </p>
+
+
+
+
+                        <div ng-repeat="bolest in bolesti track by $index">
+                            <br/>
+                            <button type="submit" style="float: right !important;" ng-click="proveriBolest(bolest.id)" class="btn btn-primary"   >
+                                <img class="clearDelete" src="../../../assets/images/check.png" width="15" height="15" title="Check illness" alt="submit" />
+                            </button>
+                            <input type="checkbox" ng-model="bolest.izabran" /> <span style="color: black; font-size: 15px" >{{bolest.naziv}} </span>
+
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                        <p>Medicine : </p>
+
+                        <div ng-repeat="lek in lekovi track by $index">
+                            <br/>
+                            <input type="checkbox" ng-model="lek.izabran" /> <span style="color: black; font-size: 15px" >{{lek.naziv}} </span>
+
+                        </div>
+
+                        <br/>
+                        <button ng-click="diagnose()"> Finish </button>
+
+                    </div>
+
+                    <div ng-if="pickNajverovatnija">
+                        <br/>
+                        <br/>
+
+                        <p>Illnesses : </p>
+
+                        <div>
+                            <br/>
+
+                            <button type="submit" style="float: right !important;" ng-click="proveriBolest(bolest.id)" class="btn btn-primary"   >
+                                <img class="clearDelete" src="../../../assets/images/check.png" width="15" height="15" title="Check illness" alt="submit" />
+                            </button>
+                            <input type="checkbox" ng-model="verovatnaBolest.izabran" /> <span style="color: black; font-size: 15px" >{{verovatnaBolest.naziv}} </span>
+
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                        <p>Medicine : </p>
+
+                        <div ng-repeat="lek in lekoviNajverovatnije track by $index">
+                            <br/>
+                            <input type="checkbox" ng-model="lek.izabran" /> <span style="color: black; font-size: 15px" >{{lek.naziv}} </span>
+
+                        </div>
+
+                        <br/>
+                        <button ng-click="diagnoseNajverovatnije()"> Finish </button>
+
+                    </div>
+
+
+                    <div ng-if="pickSveMoguce">
+                        <br/>
+                        <br/>
+
+                        <p>Illnesses : </p>
+
+                        <div>
+
+                            <div ng-repeat="bolest in bolestiSve track by $index">
+                                <br/>
+                                <button type="submit" style="float: right !important;" ng-click="proveriBolest(bolest.id)" class="btn btn-primary"   >
+                                    <img class="clearDelete" src="../../../assets/images/check.png" width="15" height="15" title="Check illness" alt="submit" />
+                                </button>
+                                <input type="checkbox" ng-model="bolest.izabran" /> <span style="color: black; font-size: 15px" >{{bolest.naziv}} </span>
+
+                            </div>
+
+                            <br/>
+                            <br/>
+
+                            <p>Medicine : </p>
+
+                            <div ng-repeat="lek in lekoviSvi track by $index">
+                                <br/>
+                                <input type="checkbox" ng-model="lek.izabran" /> <span style="color: black; font-size: 15px" >{{lek.naziv}} </span>
+
+                            </div>
+
+                            <br/>
+                            <button ng-click="diagnoseSve()"> Finish </button>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <br/>
                     <br/>
                     <button ng-click="najverovatnije()"> Most plausible illness </button>
                     <button ng-click="sveMoguce()"> All possible illnesses </button>
-                    <button ng-click="proveriBolest()"> Check illness </button>
-                    <button ng-click="rucno()"> Diagnose illness </button>
+                    <button ng-click="licno()"> Diagnose illness </button>
 
 
 

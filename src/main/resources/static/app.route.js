@@ -130,6 +130,12 @@
           controller: 'editIngredientController',
           controllerAs: 'eic',
           params: {id :null}
+      }).state('core.checkIllness', {
+          url: 'checkIllness',
+          templateUrl: 'app/components/checkIllness/checkIllness.html',
+          controller: 'checkIllnessController',
+          controllerAs: 'cic',
+          params: {id :null}
       }).state('core.dijagnoza', {
           url: 'dijagnoza',
           templateUrl: 'app/components/dijagnoza/dijagnoza.html',
