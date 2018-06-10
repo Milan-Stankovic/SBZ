@@ -114,11 +114,27 @@
           templateUrl: 'app/components/addIngredient/addIngredient.html',
           controller: 'addIngredientController',
           controllerAs: 'aic'
+      }).state('core.monitor', {
+          url: 'monitor',
+          templateUrl: 'app/components/monitor/monitor.html',
+          controller: 'monitorController',
+          controllerAs: 'mc'
+      }).state('core.report', {
+          url: 'report',
+          templateUrl: 'app/components/report/report.html',
+          controller: 'reportController',
+          controllerAs: 'rc'
       }).state('core.editIngredient', {
           url: 'editIngredient',
           templateUrl: 'app/components/editIngredient/editIngredient.html',
           controller: 'editIngredientController',
           controllerAs: 'eic',
+          params: {id :null}
+      }).state('core.dijagnoza', {
+          url: 'dijagnoza',
+          templateUrl: 'app/components/dijagnoza/dijagnoza.html',
+          controller: 'dijagnozaController',
+          controllerAs: 'dic',
           params: {id :null}
       }).state('core.login', {
           url: 'login',

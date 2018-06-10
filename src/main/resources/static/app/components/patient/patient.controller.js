@@ -47,9 +47,32 @@
         $scope.addPatient = function () {
             $location.path("/addPatient");
         }
-        
+
+        $scope.monitorPatient = function(id){
+
+
+            $http({
+                method: 'PUT',
+                url: 'http://localhost:8096/patient/monitor/'+id
+            }).then(function successCallback(response){
+                if(response.data != null){
+                    for(var i = 0; i<$scope.patients.length; i++){
+                        if($scope.patients[i].id==id){
+                            $scope.patients[i].monitoring= !$scope.patients[i].monitoring;
+                        }
+                    }
+                }
+
+
+            }, function errorCallback(response) {
+
+            });
+
+
+        }
+
         $scope.diagnose = function (id) {
-            
+            $state.go("core.dijagnoza", {"id" : id} );
         }
 
 

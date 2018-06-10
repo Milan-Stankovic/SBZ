@@ -1,0 +1,26 @@
+<div class="main">
+    <div class="content1">
+        <div class="service">
+
+            <button type="submit" style="float: right !important;" ng-click="rekurzijaCekaj()" class="btn btn-primary"   >
+                <img class="clearDelete" src="../../../assets/images/start2.png" width="20" height="20" title="Start" alt="submit" />
+            </button>
+
+            <h2> Monitor : </h2>
+
+            <div class="image group">
+
+                <div class="span_2_of_2">
+                    <div ng-repeat="notification in notifications track by $index">
+                        <p> {{notification}} </p>
+
+                    </div>
+
+
+                </div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</div>

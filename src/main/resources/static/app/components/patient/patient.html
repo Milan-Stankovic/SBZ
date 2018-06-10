@@ -23,6 +23,10 @@
                         <img class="clearDelete" src="../../../assets/images/cure.svg" width="15" height="15" title="Diagnose" alt="submit" />
                     </button>
 
+                    <button type="submit" style="float: right !important;" ng-click="monitorPatient(patient.id)" class="btn btn-primary"   >
+                        <img class="clearDelete" src="../../../assets/images/monitor.png" width="15" height="15" title="Monitor" alt="submit" />
+                    </button>
+
                     <button type="submit" style="float: right !important;" ng-click="editPatient(patient.id)" class="btn btn-primary"   >
                         <img class="clearDelete" src="../../../assets/images/edit.png" width="15" height="15" title="Edit" alt="submit" />
                     </button>
@@ -38,6 +42,13 @@
                     <br/>
                     <span>Last name : </span>
                     <span style="color: #AEAEAE !important;"> &nbsp; {{patient.prezime}}</span>
+                    <br/>
+                    <br/>
+                    <span>Being monitored : </span>
+                    <span ng-if="patient.monitoring" style="color: #AEAEAE !important;"> &nbsp; Yes</span>
+                    <span ng-if="!patient.monitoring" style="color: #AEAEAE !important;"> &nbsp; No</span>
+
+
 
                     <div ng-if="patient.more">
                         <br/>

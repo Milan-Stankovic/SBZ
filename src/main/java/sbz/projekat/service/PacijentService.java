@@ -57,6 +57,17 @@ public class PacijentService {
         }
     }
 
+    public Pacijent monitor(Long id){
+        Pacijent p = getOne(id);
+
+        if(p !=null){
+            p.setMonitoring(!p.isMonitoring());
+            pRepo.save(p);
+        }
+
+        return p;
+    }
+
 
     public void addAlergijaId(Long al, Long id){
 

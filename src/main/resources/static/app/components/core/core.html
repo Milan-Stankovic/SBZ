@@ -40,7 +40,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <a href="http://localhost:8096/#!/admin" >Users</a>
             </li>
 
-            <li >
+            <li ng-if="doktorJe()">
                 <a href="http://localhost:8096/#!/patient" >Patients</a>
             </li>
 
@@ -58,6 +58,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             <li ng-if="doktorJe()">
                 <a href="http://localhost:8096/#!/medicine" >Medicine</a>
+            </li>
+            <li ng-if="doktorJe()">
+                <a href="http://localhost:8096/#!/report" >Reports</a>
+            </li>
+
+            <li ng-if="doktorJe()">
+                <a href="http://localhost:8096/#!/monitor" >Monitor</a>
             </li>
 
             <li ng-if="loggedin">

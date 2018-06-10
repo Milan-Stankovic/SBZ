@@ -40,6 +40,9 @@ public class PacijentController {
     @RequestMapping(method = RequestMethod.PUT, value = "/patient/edit/{id}")
     public Pacijent edit(@RequestBody PacijentDTO p, @PathVariable Long id){ return pService.editPacijent(p, id); }
 
+    @RequestMapping(method = RequestMethod.PUT, value = "/patient/monitor/{id}")
+    public Pacijent monitor(@PathVariable Long id){ return pService.monitor(id); }
+
     @RequestMapping(method = RequestMethod.PUT, value = "/patient/{id}/allergy/")
     public void addAlergija(@RequestBody SastojakDTO s, @PathVariable Long id){  pService.addAlergija(s, id); }
 

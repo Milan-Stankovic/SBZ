@@ -1,0 +1,51 @@
+<div class="main">
+    <div class="content1">
+        <div class="service">
+
+            <h2> Diagnose </h2>
+
+            <div  class="image group">
+
+                <div class="span_2_of_2">
+                    <span>Insurance number :</span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{patient.brojZdravstveneKartice}} </span>
+
+                    <br/>
+                    <br/>
+                    <span>First name : </span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{patient.ime}}</span>
+                    <br/>
+                    <br/>
+                    <span>Last name : </span>
+                    <span style="color: #AEAEAE !important;"> &nbsp; {{patient.prezime}}</span>
+                    <br/>
+                    <br/>
+
+
+                        <h3>Symptoms : </h3>
+
+                        <div ng-repeat="simptom in symptom track by $index">
+                            <br/>
+                            <input type="checkbox" ng-model="simptom.izabran" /> <span style="color: black; font-size: 15px" >{{simptom.naziv}} </span>
+
+                        </div>
+
+
+
+                    <br/>
+                    <button ng-click="najverovatnije()"> Most plausible illness </button>
+                    <button ng-click="sveMoguce()"> All possible illnesses </button>
+                    <button ng-click="proveriBolest()"> Check illness </button>
+                    <button ng-click="rucno()"> Diagnose illness </button>
+
+
+
+
+
+                </div>
+                <div class="clear"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
