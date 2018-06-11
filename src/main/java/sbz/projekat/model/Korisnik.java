@@ -3,9 +3,10 @@ package sbz.projekat.model;
 import sbz.projekat.model.enums.TipKorisnika;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Korisnik {
+public class Korisnik implements Serializable {
 
     @Id
     @GeneratedValue

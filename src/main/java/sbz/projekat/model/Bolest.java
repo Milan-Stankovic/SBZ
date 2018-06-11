@@ -3,10 +3,11 @@ package sbz.projekat.model;
 import sbz.projekat.model.enums.TipBolesti;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Bolest {
+public class Bolest implements Serializable {
 
     @Id
     @GeneratedValue

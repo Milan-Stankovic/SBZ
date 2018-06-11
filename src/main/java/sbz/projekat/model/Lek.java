@@ -3,10 +3,11 @@ package sbz.projekat.model;
 import sbz.projekat.model.enums.TipLeka;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Lek {
+public class Lek implements Serializable {
 
     @Id
     @GeneratedValue

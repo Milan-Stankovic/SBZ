@@ -1,11 +1,12 @@
 package sbz.projekat.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class IstorijaBolesti {
+public class IstorijaBolesti implements Serializable {
 
 
     @Id
