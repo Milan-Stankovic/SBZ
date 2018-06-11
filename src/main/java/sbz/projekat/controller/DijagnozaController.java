@@ -24,19 +24,19 @@ public class DijagnozaController {
     private  DijagnozaService dService;
 
 
-    @RequestMapping(value = "/drools/naj", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/drools/naj", method = RequestMethod.POST, produces = "application/json")
     public List<Bolest> getNajverovatnije(@RequestBody DijagnozaDTO d)  {
 
         return dService.najverovatnije(d);
 
     }
 
-    @RequestMapping(value = "/drools/sve", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/drools/sve", method = RequestMethod.POST, produces = "application/json")
     public List<Bolest> getSve(@RequestBody DijagnozaDTO d){
         return dService.sve(d);
     }
 
-    @RequestMapping(value = "/drools/validiraj", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/drools/validiraj", method = RequestMethod.POST, produces = "application/json")
     public boolean validiraj(@RequestBody ValidacijaDTO d){
         return dService.validiraj(d);
     }

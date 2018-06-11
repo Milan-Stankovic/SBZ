@@ -45,20 +45,25 @@ public class DijagnozaService {
         dto.setSimptomi(d.getSimptomi());
         Optional<Pacijent> op = pRepo.findById(d.getKorisnik());
 
+        CounterDTO c = new CounterDTO();
+
         if(op.isPresent()){
             KieSession kieSession = kieContainer.newKieSession();
             dto.setIstorija(op.get().getIstorija());
-            kieSession.setGlobal("bolesti", bolesti);
 
+            kieSession.insert(c);
             kieSession.insert(dto);
             kieSession.getAgenda().getAgendaGroup("najverovatnije").setFocus();
+            kieSession.setGlobal("bolesti", bolesti);
             kieSession.fireAllRules();
             kieSession.dispose();
             bolesti= (SveBolestiDTO) kieSession.getGlobal("bolesti");
+
             return bolesti.getBolesti();
+
         }
 
-        return null;
+        return new ArrayList<>();
     }
 
 
@@ -68,17 +73,18 @@ public class DijagnozaService {
         SveBolestiDTO bolesti = new SveBolestiDTO();
         bolesti.setBolesti(b);
 
-
+        CounterDTO c = new CounterDTO();
         DroolsDto dto = new DroolsDto();
         dto.setSimptomi(d.getSimptomi());
         Optional<Pacijent> op = pRepo.findById(d.getKorisnik());
         if(op.isPresent()){
             KieSession kieSession = kieContainer.newKieSession();
-
+            kieSession.getAgenda().getAgendaGroup("sve").setFocus();
             kieSession.setGlobal("sveBolesti", bolesti);
 
             kieSession.insert(dto);
-            kieSession.getAgenda().getAgendaGroup("sve").setFocus();
+            kieSession.insert(c);
+
             kieSession.fireAllRules();
             kieSession.dispose();
 
@@ -91,13 +97,14 @@ public class DijagnozaService {
 
     public boolean validiraj(ValidacijaDTO dto) {
         KieSession kieSession = kieContainer.newKieSession();
+        kieSession.getAgenda().getAgendaGroup("validacija").setFocus();
 
         boolean b = false;
 
         kieSession.setGlobal("validiraj", b);
 
         kieSession.insert(dto);
-        kieSession.getAgenda().getAgendaGroup("validacija").setFocus();
+
         kieSession.fireAllRules();
         kieSession.dispose();
         return  (boolean) kieSession.getGlobal("validiraj");
@@ -105,6 +112,7 @@ public class DijagnozaService {
 
     public IzvestajDTO izvestaj() {
         KieSession kieSession = kieContainer.newKieSession();
+        kieSession.getAgenda().getAgendaGroup("izvestaj").setFocus();
 
         List<Pacijent> svi = new ArrayList<>();
         pRepo.findAll().forEach(svi::add);
@@ -114,7 +122,7 @@ public class DijagnozaService {
         kieSession.setGlobal("izvestaj",i );
 
         kieSession.insert(svi);
-        kieSession.getAgenda().getAgendaGroup("izvestaj").setFocus();
+
         kieSession.fireAllRules();
         kieSession.dispose();
         return (IzvestajDTO) kieSession.getGlobal("izvestaj");
