@@ -1,5 +1,7 @@
 package sbz.projekat.model;
 
+import sbz.projekat.model.enums.TipBolesti;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,16 +20,13 @@ public class Bolest {
 
     private String naziv;
 
-    public Bolest() {
-    }
+    public Bolest() {}
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
     public List<Simptom> getSpecificni() {
         return specificni;

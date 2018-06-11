@@ -9,6 +9,7 @@ import sbz.projekat.repostory.*;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -43,38 +44,146 @@ public class StartData {
     public void addData(){
         Korisnik admin = addUser(TipKorisnika.ADMIN, "admin","admin","Admin","Adminovic");
         Korisnik doktor = addUser(TipKorisnika.LEKAR, "doc", "doc", "Doktor","Dokic");
+        Korisnik doktor2 = addUser(TipKorisnika.LEKAR, "doca", "doca", "Marko","Markovic");
+        Korisnik doktor3 = addUser(TipKorisnika.LEKAR, "a", "a", "Nikola","Nikolic");
 
 
-        Simptom s = addSimptom("POVISENA TEMPERATURA");
-        Simptom s2 = addSimptom("BOL U STOMAKU");
-        Simptom s3 = addSimptom("POVISEN SECER");
-        Simptom s4 = addSimptom("ZAMOR");
-        Simptom s5 = addSimptom("NOCTURIA");
-        Simptom s6 = addSimptom("GUSENJE");
-        Simptom s7 = addSimptom("DIJABETES");
+        Simptom s = addSimptom("CURENJE IZ NOSA");
+        Simptom s2 = addSimptom("BOL U GRLU");
+        Simptom s3 = addSimptom("GLAVOBOLJA");
+        Simptom s4 = addSimptom("KIJANJE");
+        Simptom s5 = addSimptom("KASALJ");
 
-        List<Simptom> opsti = new ArrayList<>();
-        opsti.add(s);
-        opsti.add(s2);
-        opsti.add(s4);
-        List<Simptom> specificni = new ArrayList<>();
-        specificni.add(s7);
-        specificni.add(s6);
+
+        Simptom s6 = addSimptom("TEMPERATURA VECA OD 38C");
+        Simptom s7 = addSimptom("DRHTAVICA");
+
+        Simptom s8 = addSimptom("BOL KOJI SE SIRI DO USIJU");
+        Simptom s9 = addSimptom("TEMPERATURA VECA OD 40C DO 41C");
+        Simptom s10 = addSimptom("GUBITAK APETITA");
+        Simptom s11 = addSimptom("UMOR");
+        Simptom s12 = addSimptom("ZUTI SEKRET IZ NOSA");
+
+        Simptom s13 = addSimptom("OTICANJE OKO OCIJU");
+
+        Simptom s14 = addSimptom("BOLOVAO OD PREHLADE ILI GROZNICE U ZADNJIH 60 DANA");
+
+        Simptom s15 = addSimptom("U 6 MESECI 10 SLUCAJEVA VISOKOG PRITISKA");
+
+        Simptom s16 = addSimptom("VISOK PRITISAK");
+
+        Simptom s17 = addSimptom("CESTO URINIRANJE");
+        Simptom s18 = addSimptom("GUBITAK TELESNE TEZINE");
+        Simptom s19 = addSimptom("MUCNINA I POVRACANJE");
+        Simptom s20 = addSimptom("ZAMOR");
+
+        Simptom s21 = addSimptom("NOCTURIA");
+        Simptom s22 = addSimptom("OTICANJE NOGU I ZGLOBOVA");
+        Simptom s23 = addSimptom("GUSENJE");
+        Simptom s24 = addSimptom("BOL U GRUDIMA");
+        Simptom s25 = addSimptom("BOLUJE OD HIPERTENZIJE VISE OD 6 MESECI");
+        Simptom s26 = addSimptom("BOLUJE OD DIJABETESA");
+        Simptom s27 = addSimptom("DIJAREJA");
+
+        Simptom s28 = addSimptom("OPERACIJA");
+
+        Simptom s29 = addSimptom("OPORAVLJA SE OD OPERACIJE");
+        Simptom s30 = addSimptom("POVISENA TEMPERATURA U POSLEDNJIH 14 DANA");
+        Simptom s31 = addSimptom("PRIMAO ANTIBIOTIKE U POSLEDNJIH 21 DAN");
+
+
+        List<Simptom> opstiAkutna = new ArrayList<>();
+        opstiAkutna.add(s20);
+        opstiAkutna.add(s23);
+        opstiAkutna.add(s22);
+        opstiAkutna.add(s27);
+
+        List<Simptom> specificniAkutna = new ArrayList<>();
+        specificniAkutna.add(s29);
+        specificniAkutna.add(s30);
+        specificniAkutna.add(s31);
+
+
+        List<Simptom> opstiHronicna = new ArrayList<>();
+        opstiHronicna.add(s20);
+        opstiHronicna.add(s21);
+        opstiHronicna.add(s22);
+        opstiHronicna.add(s23);
+        opstiHronicna.add(s24);
+
+        List<Simptom> specificniHronicna = new ArrayList<>();
+
+        specificniHronicna.add(s25);
+        specificniHronicna.add(s26);
+
+        List<Simptom> opstiDijabetes = new ArrayList<>();
+        opstiDijabetes.add(s17);
+        opstiDijabetes.add(s18);
+        opstiDijabetes.add(s19);
+        opstiDijabetes.add(s20);
+
+        List<Simptom> opstiHipertenzija = new ArrayList<>();
+        opstiHipertenzija.add(s15);
+
+        List<Simptom> opstiInfekcija = new ArrayList<>();
+        opstiInfekcija.add(s13);
+        opstiInfekcija.add(s3);
+        opstiInfekcija.add(s12);
+        opstiInfekcija.add(s2);
+        opstiInfekcija.add(s6);
+        opstiInfekcija.add(s5);
+        opstiInfekcija.add(s14);
+
+
+
+        List<Simptom> opstiPrehlada = new ArrayList<>();
+        opstiPrehlada.add(s);
+        opstiPrehlada.add(s2);
+        opstiPrehlada.add(s3);
+        opstiPrehlada.add(s4);
+        opstiPrehlada.add(s5);
+
+        List<Simptom> opstiGroznica = new ArrayList<>();
+        opstiGroznica.add(s4);
+        opstiGroznica.add(s2);
+        opstiGroznica.add(s5);
+        opstiGroznica.add(s6);
+        opstiGroznica.add(s);
+        opstiGroznica.add(s3);
+        opstiGroznica.add(s7);
+
+
+        List<Simptom> opstiUpalaKrajnika = new ArrayList<>();
+
+        opstiUpalaKrajnika.add(s2);
+        opstiUpalaKrajnika.add(s8);
+        opstiUpalaKrajnika.add(s3);
+        opstiUpalaKrajnika.add(s9);
+        opstiUpalaKrajnika.add(s7);
+        opstiUpalaKrajnika.add(s10);
+        opstiUpalaKrajnika.add(s11);
+        opstiUpalaKrajnika.add(s12);
+
+
+       List<Simptom> prazna = new ArrayList<>();
 
         List<Simptom> opsti2 = new ArrayList<>();
         opsti2.add(s3);
         List<Simptom> specificni2 = new ArrayList<>();
         specificni2.add(s5);
 
-        Bolest b = addBolest("HRONICNA UPALA BUBREGA", opsti, specificni);
-        Bolest b2 = addBolest("DIJABETES", opsti2, specificni2);
+        Bolest prehlada = addBolest("PREHLADA", opstiPrehlada, prazna);
+        Bolest groznica = addBolest("GROZNICA", opstiGroznica, prazna);
+        Bolest upala_krajnika = addBolest("UPALA KRAJNIKA", opstiUpalaKrajnika, prazna);
+        Bolest sinusna_infekcija = addBolest("SINUSNA INFEKCIJA", opstiInfekcija, prazna);
 
-        List<Bolest> bolesti1 = new ArrayList<>();
-        bolesti1.add(b);
-        bolesti1.add(b2);
+        Bolest hipertenzija = addBolest("HIPERTENZIJA", opstiHipertenzija, prazna);
+        Bolest dijabetes = addBolest("DIJABETES", opstiDijabetes, prazna);
 
-        List<Bolest> bolesti2 = new ArrayList<>();
-        bolesti2.add(b);
+        Bolest hronicna_bubrezna_bolest = addBolest("HRONICNA BUBREZNA BOLEST", opstiHronicna, specificniHronicna);
+        Bolest akutna_bubrezna_povreda = addBolest("AKUTNA BUBREZNA POVREDA", opstiDijabetes, prazna);
+
+
 
         Sastojak sa1 = addSastojak("VODA");
         Sastojak sa2 = addSastojak("SECER");
@@ -110,30 +219,132 @@ public class StartData {
 
 
 
-        Pacijent pac1 = addPacijent("Minja", "Car", "001", false);
+        Pacijent pac1 = addPacijent("Zoran", "Prehlada", "001", false);
 
-        Pacijent pac2 = addPacijent("Milan", "Markovic", "007", true);
+        Pacijent pac2 = addPacijent("Tanja", "Groznica", "007", true);
 
-     /*   Terapija t1 = addTerapija(pac1, doktor, lekovi);
+        Pacijent pac3 = addPacijent("Marko", "Pritisak", "005", false);
 
-        Terapija t2 = addTerapija(pac2, doktor, lekovi2);
+        Pacijent pac4 = addPacijent("Nina", "Hipertenzija", "010", true);
+        Pacijent pac5 = addPacijent("Sasa", "Dijabetes", "099", false);
 
-        List<Terapija> ter1 = new ArrayList<>();
-        ter1.add(t1);
-        ter1.add(t2);
+        Pacijent pac6 = addPacijent("Jovana", "Temperatura", "063", true);
+        Pacijent pac7 = addPacijent("Ilija", "Antibiotik", "016", false);
 
-        List<Terapija> ter2 = new ArrayList<>();
-        ter2.add(t2);
+        Pacijent pac8 = addPacijent("Ana", "Zdrava", "000", false);
 
-*/
-        IstorijaBolesti i = addIstorijaBolesti(lekovi, specificni, bolesti1);
-        IstorijaBolesti i2 = addIstorijaBolesti(lekovi2, opsti, bolesti2);
+        Pacijent pac9 = addPacijent("Milan", "Hronicni", "061", true);
 
-        pac1= updatePacijentIstorija(i, pac1);
+        Pacijent pac10 = addPacijent("Sanja", "Zavisnik", "071", false);
 
-        pac1 = updatePacijentIstorija(i2, pac1);
+        Pacijent pac11 = addPacijent("Dragan", "Imunitet", "100", false);
 
-        pac2 = updatePacijentIstorija(i2, pac2);
+
+        List<Lek> prazanLek = new ArrayList<>();
+        List<Lek> antibiotik = new ArrayList<>();
+        antibiotik.add(l2);
+
+        List<Lek> analgetik = new ArrayList<>();
+        analgetik.add(l);
+
+
+        //IstorijaBolesti addIstorijaBolesti(List<Lek> terpije, List<Simptom> simptomi, List<Bolest> bolesti){
+
+        List<Bolest> prehladaL = new ArrayList<>();
+
+        prehladaL.add(prehlada);
+
+        List<Bolest> praznaBolest = new ArrayList<>();
+
+        List<Bolest> groznicaL = new ArrayList<>();
+
+        groznicaL.add(groznica);
+
+        List<Simptom> visokPritisakL = new ArrayList<>();
+
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+        visokPritisakL.add(s16);
+
+
+        List<Bolest> hipertenzijaL = new ArrayList<>();
+
+        hipertenzijaL.add(hipertenzija);
+
+        List<Bolest> dijabetesL = new ArrayList<>();
+
+        dijabetesL.add(dijabetes);
+
+        List<Bolest> temperaturaL = new ArrayList<>();
+
+        temperaturaL.add(groznica);
+
+        IstorijaBolesti praznaIstorja = addIstorijaBolesti(prazanLek, prazna,praznaBolest , false, doktor );
+
+        IstorijaBolesti analgetikIstorija = addIstorijaBolesti(analgetik, prazna,praznaBolest , false, doktor );
+        IstorijaBolesti analgetikIstorija2 = addIstorijaBolesti(analgetik, prazna,praznaBolest , false, doktor2 );
+        IstorijaBolesti analgetikIstorija3 = addIstorijaBolesti(analgetik, prazna,praznaBolest , false, doktor3 );
+
+        IstorijaBolesti prehladaIstorija = addIstorijaBolesti(prazanLek, prazna,prehladaL , false, doktor );
+
+        IstorijaBolesti antibiotikImunitet = addIstorijaBolesti(antibiotik, prazna,prehladaL , false, doktor );
+        IstorijaBolesti antibiotikImunitet2 = addIstorijaBolesti(antibiotik, prazna,groznicaL , false, doktor );
+
+        IstorijaBolesti groznicaIstorija = addIstorijaBolesti(prazanLek, prazna,groznicaL , false, doktor );
+
+        IstorijaBolesti visokPritisakIstorija = addIstorijaBolesti(prazanLek, visokPritisakL, praznaBolest, false, doktor );
+
+        IstorijaBolesti hipertenzijaIstorija = addIstorijaBolesti(prazanLek, prazna, hipertenzijaL, true, doktor );
+
+        IstorijaBolesti dijabetesIstorija = addIstorijaBolesti(prazanLek, prazna, dijabetesL, false, doktor );
+
+        IstorijaBolesti antibiotikIstorija = addIstorijaBolesti(antibiotik, prazna, groznicaL, false, doktor );
+
+        pac1 = updatePacijentIstorija(prehladaIstorija, pac1);
+        pac2 = updatePacijentIstorija(groznicaIstorija, pac2);
+        pac3 = updatePacijentIstorija(visokPritisakIstorija, pac3);
+        pac4 = updatePacijentIstorija(hipertenzijaIstorija, pac4);
+        pac5 = updatePacijentIstorija(dijabetesIstorija, pac5);
+        pac6 = updatePacijentIstorija(groznicaIstorija, pac6);
+        pac7 = updatePacijentIstorija(antibiotikIstorija, pac7);
+        pac8 = updatePacijentIstorija(praznaIstorja, pac8);
+
+        pac9 = updatePacijentIstorija(dijabetesIstorija, pac9);
+        pac9 = updatePacijentIstorija(dijabetesIstorija, pac9);
+        pac9 = updatePacijentIstorija(dijabetesIstorija, pac9);
+        pac9 = updatePacijentIstorija(dijabetesIstorija, pac9);
+        pac9 = updatePacijentIstorija(dijabetesIstorija, pac9);
+        pac9 = updatePacijentIstorija(dijabetesIstorija, pac9);
+
+
+        pac10 = updatePacijentIstorija(analgetikIstorija, pac10);
+        pac10 = updatePacijentIstorija(analgetikIstorija, pac10);
+        pac10 = updatePacijentIstorija(analgetikIstorija, pac10);
+        pac10 = updatePacijentIstorija(analgetikIstorija2, pac10);
+        pac10 = updatePacijentIstorija(analgetikIstorija2, pac10);
+        pac10 = updatePacijentIstorija(analgetikIstorija3, pac10);
+        pac10 = updatePacijentIstorija(analgetikIstorija3, pac10);
+
+        pac11 = updatePacijentIstorija(antibiotikImunitet, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet2, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet, pac11);
+        pac11 = updatePacijentIstorija(antibiotikImunitet2, pac11);
+
 
         pac1 = updatePacijentAlergije(lekOd, pac1);
 
@@ -153,10 +364,22 @@ public class StartData {
         return pRepo.save(p1);
     }
 
-    public IstorijaBolesti addIstorijaBolesti(List<Lek> terpije, List<Simptom> simptomi, List<Bolest> bolesti){
+    public IstorijaBolesti addIstorijaBolesti(List<Lek> terpije, List<Simptom> simptomi, List<Bolest> bolesti, boolean b, Korisnik k){
         IstorijaBolesti i = new IstorijaBolesti();
 
+
         Date d = new Date();
+
+        if(b) {
+            Calendar myCal = Calendar.getInstance();
+            myCal.set(Calendar.YEAR, 2017);
+            myCal.set(Calendar.MONTH, 6);
+            myCal.set(Calendar.DAY_OF_MONTH, 1);
+            d = myCal.getTime();
+        }
+
+
+        i.setDoktor(k);
         i.setVreme(d);
         i.setTerapije(terpije);
         i.setSimptomi(simptomi);

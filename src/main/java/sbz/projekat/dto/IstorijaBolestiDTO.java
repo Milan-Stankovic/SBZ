@@ -11,7 +11,17 @@ public class IstorijaBolestiDTO {
 
     private List<Long> terapije;
 
+    private Long doktorId;
+
     public IstorijaBolestiDTO() {
+    }
+
+    public Long getDoktorId() {
+        return doktorId;
+    }
+
+    public void setDoktorId(Long doktorId) {
+        this.doktorId = doktorId;
     }
 
     public List<Long> getSimptomi() {

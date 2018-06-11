@@ -10,8 +10,7 @@ public class BolestDTO {
 
     private List<Long> opsti;
 
-    public BolestDTO() {
-    }
+    public BolestDTO() { }
 
     public String getNaziv() {
         return naziv;

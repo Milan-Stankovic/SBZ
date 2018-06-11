@@ -23,7 +23,27 @@ public class IstorijaBolesti {
     @ManyToMany
     private List<Lek> terapija;
 
+    @ManyToOne
+    private Korisnik doktor;
+
     public IstorijaBolesti() {
+    }
+
+
+    public Korisnik getDoktor() {
+        return doktor;
+    }
+
+    public void setDoktor(Korisnik doktor) {
+        this.doktor = doktor;
+    }
+
+    public List<Lek> getTerapija() {
+        return terapija;
+    }
+
+    public void setTerapija(List<Lek> terapija) {
+        this.terapija = terapija;
     }
 
     public List<Lek> getTerapije() {
