@@ -31,4 +31,19 @@ public class SampleAppController {
 
 		return null;
 	}
+
+	@RequestMapping(value = "/drools", method = RequestMethod.GET, produces = "application/json")
+	public Item getTest()  {
+
+		Double cost = 200.0;
+		Double d = 50.0;
+		Item newItem = new Item(Long.parseLong("12"), "auto", cost, d);
+
+		log.debug("Item request received for: " + newItem);
+
+		Item i2 = sampleService.getClassifiedItem(newItem);
+
+		return i2;
+	}
+
 }

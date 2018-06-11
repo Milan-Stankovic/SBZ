@@ -8,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+
 @Service
 public class SampleAppService {
 
-	private static Logger log = LoggerFactory.getLogger(SampleAppService.class);
+    private static Logger log = LoggerFactory.getLogger(SampleAppService.class);
 
- /*   private final KieContainer kieContainer;
-   
+    private final KieContainer kieContainer;
+
     @Autowired
     public SampleAppService(KieContainer kieContainer) {
         log.info("Initialising a new example session.");
@@ -28,5 +29,4 @@ public class SampleAppService {
         kieSession.dispose();
         return i;
     }
-    */
 }
