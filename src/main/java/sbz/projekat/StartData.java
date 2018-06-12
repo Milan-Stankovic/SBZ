@@ -200,7 +200,7 @@ public class StartData {
 
 
         Lek l = addLek("Aspirin", lekOd, TipLeka.ANALGETIK);
-        Lek l2 = addLek("Klindamicin", lekOd2, TipLeka.ANTIBOTIK);
+        Lek l2 = addLek("Klindamicin", lekOd2, TipLeka.ANTIBIOTIK);
         Lek l3 = addLek("Strepsils", lekOd3, TipLeka.OSTALO);
 
         List<Lek> lekovi = new ArrayList<>();

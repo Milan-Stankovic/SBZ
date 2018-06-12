@@ -1,15 +1,18 @@
 package sbz.projekat.service;
 
+import org.drools.core.ClockType;
+import org.drools.core.time.SessionPseudoClock;
+import org.kie.api.runtime.Environment;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.KieSessionConfiguration;
+import org.kie.api.runtime.conf.ClockTypeOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sbz.projekat.dto.*;
 import sbz.projekat.model.Bolest;
-import sbz.projekat.model.IstorijaBolesti;
-import sbz.projekat.model.Korisnik;
 import sbz.projekat.model.Pacijent;
 
 import sbz.projekat.repostory.PacijentRepository;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 
 @Service
@@ -125,13 +129,90 @@ public class DijagnozaService {
         return  (String) kieSession.getGlobal("validiraj");
     }
 
+
+    public String monitor(){
+        String s ="";
+
+        KieSessionConfiguration ksconf1 = kieContainer.getKieSessionConfiguration();
+        ksconf1.setOption(ClockTypeOption.get(ClockType.PSEUDO_CLOCK.getId()));
+        KieSession ksession1 = kieContainer.newKieSession();
+
+        List<Pacijent> pacijenti = pRepo.findByMonitoring(true);
+
+        int i = (int) Math.random() % pacijenti.size();
+
+        Pacijent p= pacijenti.get(i);
+
+        MonitorDTO ispis = new MonitorDTO();
+
+        ksession1.setGlobal("ispis", ispis);
+
+        ksession1.insert(p); // Zbog bubrezne
+
+        SessionPseudoClock clock = ksession1.getSessionClock();
+        for (int index = 0; index < 100; index++) {
+            SrceEvent beep = new SrceEvent();
+            ksession1.insert(beep);
+
+            if(index%10 ==0)
+                clock.advanceTime(1, TimeUnit.SECONDS);
+            int ruleCount = ksession1.fireAllRules();
+            //As long as there is a steady heart beat, no rule will fire
+        }
+
+
+        for (int index = 0; index < 6; index++) {
+            KiseonikEvent disi = new KiseonikEvent();
+            ksession1.insert(disi);
+
+            //As long as there is a steady heart beat, no rule will fire
+        }
+        clock.advanceTime(16, TimeUnit.MINUTES);
+        int ruleCount = ksession1.fireAllRules();
+
+        if(ruleCount> 0)
+            System.out.println("PROBLEM SA DISANJEM");
+
+
+
+        for (int index = 0; index < 100; index++) {
+            SrceEvent beep = new SrceEvent();
+            ksession1.insert(beep);
+            MokrenjeEvent e = new MokrenjeEvent();
+
+            if(index%10 ==0)
+                ksession1.insert(e);
+
+
+            if(index%30 ==0)
+                clock.advanceTime(1, TimeUnit.SECONDS);
+             ruleCount = ksession1.fireAllRules();
+
+            if(ruleCount >0){
+                System.out.println("PROBLEM SA SRCEM");
+            }
+
+
+        }
+
+        ispis = (MonitorDTO) ksession1.getGlobal("ispis");
+
+        if( !ispis.getDializaPoruka().equals(""))
+            s+=ispis.getDializaPoruka() + System.getProperty("line.separator");
+        if( !ispis.getGusenjePoruka().equals(""))
+            s+=ispis.getGusenjePoruka() + System.getProperty("line.separator");
+        if( !ispis.getSrckaPoruka().equals(""))
+            s+=ispis.getSrckaPoruka() + System.getProperty("line.separator");
+
+        return s;
+    }
+
     public IzvestajDTO izvestaj() {
         KieSession kieSession = kieContainer.newKieSession();
         kieSession.getAgenda().getAgendaGroup("izvestaj").setFocus();
 
+        DoktoriDTO doktori = new DoktoriDTO();
 
-        SveBolestiDTO bolesti = new SveBolestiDTO();
-        SviLekoviDTO lekovi = new SviLekoviDTO();
 
         ArrayList<Pacijent> svi = new ArrayList<>();
         pRepo.findAll().forEach(svi::add);
@@ -140,37 +221,13 @@ public class DijagnozaService {
 
         Date d = new Date();
         kieSession.insert(d);
+        kieSession.insert(doktori);
 
         kieSession.setGlobal("izvestaj",i );
 
         for (Pacijent p:svi) {
-
             kieSession.insert(p);
-/*            bolesti = new SveBolestiDTO();
-            lekovi = new SviLekoviDTO();
-
-            for (IstorijaBolesti ist:p.getIstorija()) {
-                lekovi.getLekovi().addAll(ist.getTerapija());
-                lekovi.getDoktori().add(ist.getDoktor().getId());
-                for (Bolest b: ist.getBolesti()) {
-                    bolesti.getBolesti().add(b.getNaziv());
-                }
-            }
-
-            bolesti.setId(p.getId());
-            lekovi.setId(p.getId());
-
-            kieSession.insert(bolesti);
-            kieSession.insert(lekovi);
-            */
-
         }
-
-
-
-
-       // kieSession.insert(s);
-
 
         kieSession.fireAllRules();
         kieSession.dispose();
