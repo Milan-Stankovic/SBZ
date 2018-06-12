@@ -14,6 +14,7 @@ import sbz.projekat.model.Pacijent;
 import sbz.projekat.repostory.PacijentRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,12 +35,21 @@ public class DijagnozaService {
         this.kieContainer = kieContainer;
     }
 
+    private ArrayList<Bolest> converter(ArrayList<String> s){
+        ArrayList<Bolest> bolesti = new ArrayList<>();
+
+
+        return bolesti;
+    }
+
     public ArrayList<Bolest> najverovatnije(DijagnozaDTO d) {
 
 
-        ArrayList<Bolest> b = new ArrayList<>();
+
         SveBolestiDTO bolesti = new SveBolestiDTO();
-        bolesti.setBolesti(b);
+
+
+        Date dat = new Date();
 
         DroolsDto dto = new DroolsDto();
         dto.setSimptomi(d.getSimptomi());
@@ -51,6 +61,7 @@ public class DijagnozaService {
             KieSession kieSession = kieContainer.newKieSession();
             dto.setIstorija(op.get().getIstorija());
 
+            kieSession.insert(dat);
             kieSession.insert(c);
             kieSession.insert(dto);
             kieSession.getAgenda().getAgendaGroup("najverovatnije").setFocus();
@@ -59,7 +70,7 @@ public class DijagnozaService {
             kieSession.dispose();
             bolesti= (SveBolestiDTO) kieSession.getGlobal("bolesti");
 
-            return bolesti.getBolesti();
+            return converter(bolesti.getBolesti()); // SREDITI OVO
 
         }
 
@@ -69,10 +80,11 @@ public class DijagnozaService {
 
     public List<Bolest> sve(DijagnozaDTO d) {
 
-        ArrayList<Bolest> b = new ArrayList<>();
-        SveBolestiDTO bolesti = new SveBolestiDTO();
-        bolesti.setBolesti(b);
 
+        SveBolestiDTO bolesti = new SveBolestiDTO();
+
+
+        Date dat = new Date();
         CounterDTO c = new CounterDTO();
         DroolsDto dto = new DroolsDto();
         dto.setSimptomi(d.getSimptomi());
@@ -82,6 +94,8 @@ public class DijagnozaService {
             kieSession.getAgenda().getAgendaGroup("sve").setFocus();
             kieSession.setGlobal("sveBolesti", bolesti);
 
+            kieSession.insert(dat);
+
             kieSession.insert(dto);
             kieSession.insert(c);
 
@@ -89,7 +103,7 @@ public class DijagnozaService {
             kieSession.dispose();
 
             bolesti= (SveBolestiDTO) kieSession.getGlobal("sveBolesti");
-            return bolesti.getBolesti();
+            return converter(bolesti.getBolesti());
         }
         return null;
 
@@ -114,6 +128,9 @@ public class DijagnozaService {
         KieSession kieSession = kieContainer.newKieSession();
         kieSession.getAgenda().getAgendaGroup("izvestaj").setFocus();
 
+
+        Date dat = new Date();
+
         List<Pacijent> svi = new ArrayList<>();
         pRepo.findAll().forEach(svi::add);
 
@@ -122,6 +139,8 @@ public class DijagnozaService {
         kieSession.setGlobal("izvestaj",i );
 
         kieSession.insert(svi);
+        kieSession.insert(dat);
+
 
         kieSession.fireAllRules();
         kieSession.dispose();

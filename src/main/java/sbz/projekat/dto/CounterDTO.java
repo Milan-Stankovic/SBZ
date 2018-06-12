@@ -1,10 +1,15 @@
 package sbz.projekat.dto;
 
-import java.util.HashMap;
+import org.kie.api.definition.type.PropertyReactive;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+
+@PropertyReactive
 public class CounterDTO {
 
-    private HashMap<String, Integer> vrednosti;
+    private HashMap<String, Integer> vrednosti = new HashMap<>();
 
     private int naj1 = -1;
 
@@ -46,4 +51,27 @@ public class CounterDTO {
     public void setNaj3(int naj3) {
         this.naj3 = naj3;
     }
+
+    public boolean checkDane(Date d1, Date d2, int n ){
+        boolean b = false;
+
+        long diff = d1.getTime() - d2.getTime();
+        long i = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        if(i<n)
+            b=true;
+
+        return b;
+    }
+
+    public boolean check6m(Date d1, Date d2 ){
+        boolean b = false;
+        long diff = d1.getTime() - d2.getTime();
+        long i = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        if(i>180)
+            b=true;
+        return b;
+    }
+
+
+
 }

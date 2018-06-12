@@ -8,13 +8,13 @@ import java.util.List;
 
 public class SveBolestiDTO implements Serializable {
 
-    private ArrayList<Bolest> bolesti;
+    private ArrayList<String> bolesti = new ArrayList<>();
 
-    public ArrayList<Bolest> getBolesti() {
+    public ArrayList<String> getBolesti() {
         return bolesti;
     }
 
-    public void setBolesti(ArrayList<Bolest> bolesti) {
+    public void setBolesti(ArrayList<String> bolesti) {
         this.bolesti = bolesti;
     }
 
