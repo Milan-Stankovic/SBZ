@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Pacijent {
+public class Pacijent implements Serializable {
 
     @Id
     @GeneratedValue

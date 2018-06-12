@@ -37,7 +37,7 @@ public class DijagnozaController {
     }
 
     @RequestMapping(value = "/drools/validiraj", method = RequestMethod.POST, produces = "application/json")
-    public boolean validiraj(@RequestBody ValidacijaDTO d){
+    public String validiraj(@RequestBody ValidacijaDTO d){
         return dService.validiraj(d);
     }
 

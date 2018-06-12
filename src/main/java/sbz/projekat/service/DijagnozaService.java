@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sbz.projekat.dto.*;
 import sbz.projekat.model.Bolest;
+import sbz.projekat.model.IstorijaBolesti;
 import sbz.projekat.model.Korisnik;
 import sbz.projekat.model.Pacijent;
 
@@ -109,19 +110,19 @@ public class DijagnozaService {
 
     }
 
-    public boolean validiraj(ValidacijaDTO dto) {
+    public String validiraj(ValidacijaDTO dto) {
         KieSession kieSession = kieContainer.newKieSession();
         kieSession.getAgenda().getAgendaGroup("validacija").setFocus();
 
-        boolean b = false;
+        String valicacija = "NO";
 
-        kieSession.setGlobal("validiraj", b);
+        kieSession.setGlobal("validiraj", valicacija);
 
         kieSession.insert(dto);
 
         kieSession.fireAllRules();
         kieSession.dispose();
-        return  (boolean) kieSession.getGlobal("validiraj");
+        return  (String) kieSession.getGlobal("validiraj");
     }
 
     public IzvestajDTO izvestaj() {
@@ -129,17 +130,46 @@ public class DijagnozaService {
         kieSession.getAgenda().getAgendaGroup("izvestaj").setFocus();
 
 
-        Date dat = new Date();
+        SveBolestiDTO bolesti = new SveBolestiDTO();
+        SviLekoviDTO lekovi = new SviLekoviDTO();
 
-        List<Pacijent> svi = new ArrayList<>();
+        ArrayList<Pacijent> svi = new ArrayList<>();
         pRepo.findAll().forEach(svi::add);
 
         IzvestajDTO i = new IzvestajDTO();
 
+        Date d = new Date();
+        kieSession.insert(d);
+
         kieSession.setGlobal("izvestaj",i );
 
-        kieSession.insert(svi);
-        kieSession.insert(dat);
+        for (Pacijent p:svi) {
+
+            kieSession.insert(p);
+/*            bolesti = new SveBolestiDTO();
+            lekovi = new SviLekoviDTO();
+
+            for (IstorijaBolesti ist:p.getIstorija()) {
+                lekovi.getLekovi().addAll(ist.getTerapija());
+                lekovi.getDoktori().add(ist.getDoktor().getId());
+                for (Bolest b: ist.getBolesti()) {
+                    bolesti.getBolesti().add(b.getNaziv());
+                }
+            }
+
+            bolesti.setId(p.getId());
+            lekovi.setId(p.getId());
+
+            kieSession.insert(bolesti);
+            kieSession.insert(lekovi);
+            */
+
+        }
+
+
+
+
+       // kieSession.insert(s);
 
 
         kieSession.fireAllRules();
@@ -147,5 +177,6 @@ public class DijagnozaService {
         return (IzvestajDTO) kieSession.getGlobal("izvestaj");
 
     }
+
 
 }
