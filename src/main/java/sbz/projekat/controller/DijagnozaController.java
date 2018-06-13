@@ -1,5 +1,6 @@
 package sbz.projekat.controller;
 
+import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +18,20 @@ public class DijagnozaController {
     @Autowired
     private  DijagnozaService dService;
 
-    @RequestMapping(value = "/drools/naj", method = RequestMethod.POST)
-    public RezultatBolestiDTO getNajverovatnije(@RequestBody DijagnozaDTO d)  { return dService.najverovatnije(d);}
+    @RequestMapping(value = "/drools/naj/{id}", method = RequestMethod.POST)
+    public RezultatBolestiDTO getNajverovatnije(@RequestBody DijagnozaDTO d, @PathVariable Long id)  { return dService.najverovatnije(d, id);}
 
-    @RequestMapping(value = "/drools/sve", method = RequestMethod.POST)
-    public List<Bolest> getSve(@RequestBody DijagnozaDTO d){
-        return dService.sve(d);
+    @RequestMapping(value = "/drools/sve/{id}", method = RequestMethod.POST)
+    public List<Bolest> getSve(@RequestBody DijagnozaDTO d, @PathVariable Long id){
+        return dService.sve(d, id);
     }
 
-    @RequestMapping(value = "/drools/validiraj", method = RequestMethod.POST)
-    public RezultatStringDTO validiraj(@RequestBody ValidacijaDTO d){
-        return dService.validiraj(d);
-    }
+    @RequestMapping(value = "/drools/validiraj/{id}", method = RequestMethod.POST)
+    public RezultatStringDTO validiraj(@RequestBody ValidacijaDTO d, @PathVariable Long id ){ return dService.validiraj(d,id); }
 
-    @RequestMapping(value = "/drools/izvestaj", method = RequestMethod.GET)
-    public RezultatIzvestajaDTO izvestaj(){
-        return dService.izvestaj();
+    @RequestMapping(value = "/drools/izvestaj/{id}", method = RequestMethod.GET)
+    public RezultatIzvestajaDTO izvestaj(@PathVariable Long id){
+        return dService.izvestaj(id);
     }
 
     @RequestMapping(value = "/drools/monitor", method = RequestMethod.GET)
@@ -40,9 +39,14 @@ public class DijagnozaController {
         return dService.monitor();
     }
 
-    @RequestMapping(value = "/drools/bolest", method = RequestMethod.POST)
-    public RezultatSimptomiDTO bolest(@RequestBody SimptomiDTO id){ return dService.bolest(id);
-    }
+    @RequestMapping(value = "/drools/session/login/{id}", method = RequestMethod.PUT)
+    public void getSession(@PathVariable Long id){  dService.getSession(id); }
+
+    @RequestMapping(value = "/drools/session/logout/{id}", method = RequestMethod.DELETE)
+    public void deleteSession(@PathVariable Long id){  dService.deleteSession(id); }
+
+    @RequestMapping(value = "/drools/bolest/{id}", method = RequestMethod.POST)
+    public RezultatSimptomiDTO bolest(@RequestBody SimptomiDTO s, @PathVariable Long id){ return dService.bolest(s,id); }
 
 
 }

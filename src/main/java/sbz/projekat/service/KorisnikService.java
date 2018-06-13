@@ -3,10 +3,12 @@ package sbz.projekat.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sbz.projekat.dodatno.Converter;
+import sbz.projekat.dodatno.ScopeSingleton;
 import sbz.projekat.dto.KorisnikDTO;
 import sbz.projekat.dto.LoginDTO;
 import sbz.projekat.model.Korisnik;
 import sbz.projekat.model.Terapija;
+import sbz.projekat.model.enums.TipKorisnika;
 import sbz.projekat.repostory.KorisnikRepository;
 import sbz.projekat.repostory.TerapijaRepository;
 
@@ -22,6 +24,7 @@ public class KorisnikService {
 
     @Autowired
     private TerapijaRepository tRepo;
+
 
     public Korisnik addKorisnik(KorisnikDTO kor){
         Korisnik k = Converter.converterKorisnika(kor);

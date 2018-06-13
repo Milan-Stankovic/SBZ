@@ -51,7 +51,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:8096/drools/naj',
+                url: 'http://localhost:8096/drools/naj/'+$cookies.get('id'),
                 data: data
             }).then(function successCallback(response){
                 var temp = response.data;
@@ -98,7 +98,7 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:8096/drools/sve',
+                url: 'http://localhost:8096/drools/sve/'+$cookies.get('id'),
                 data: data
             }).then(function successCallback(response){
                 var temp = response.data;
@@ -208,7 +208,7 @@
 
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:8096/drools/validiraj',
+                    url: 'http://localhost:8096/drools/validiraj/'+$cookies.get('id'),
                     data :validData
                 }).then(function successCallback(response){
 
@@ -317,7 +317,7 @@
 
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:8096/drools/validiraj',
+                    url: 'http://localhost:8096/drools/validiraj/'+$cookies.get('id'),
                     data :validData
                 }).then(function successCallback(response){
 
@@ -427,7 +427,7 @@
 
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:8096/drools/validiraj',
+                    url: 'http://localhost:8096/drools/validiraj/'+$cookies.get('id'),
                     data :validData
                 }).then(function successCallback(response){
 

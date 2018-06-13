@@ -21,8 +21,19 @@
 
 
         $scope.logout = function(){
+
+            $http({
+                method: 'DELETE',
+                url: 'http://localhost:8096/drools/session/logout/'+$cookies.get('id'),
+            }).then(function successCallback(response) {
+
+
+            });
+
             $cookies.remove('id');
             $cookies.remove('user');
+
+
             $location.path("/home");
             $scope.provera();
             $scope.proveraAdmin();

@@ -51,7 +51,7 @@
 
                     $http({
                         method: 'POST',
-                        url: 'http://localhost:8096/drools/bolest',
+                        url: 'http://localhost:8096/drools/bolest/'+$cookies.get('id'),
                         data:data
                     }).then(function successCallback(response){
                         var dto = response.data;

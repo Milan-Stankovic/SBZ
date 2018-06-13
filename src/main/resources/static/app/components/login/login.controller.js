@@ -10,10 +10,8 @@
         var lc = this;
 
 
-        console.log("U JS JE ");
 
         var init = function (){
-            console.log("EVO U INITU SAM");
 
             if($cookies.get('user'))
                 $location.path("/home")
@@ -24,8 +22,6 @@
 
         $scope.login = function(username, pass){
 
-            console.log("NIJE DO OVOGA ? ");
-
             if(username===undefined || pass===undefined || username==="" || pass===""){
                 alert("Enter both username and password.");
                 return;
@@ -35,8 +31,6 @@
                 "username" :username,
                 "password" : pass
             }
-
-            console.log("IZNAD POSTA SAM");
 
 
             $http({
@@ -56,6 +50,15 @@
 
 
                 else{
+
+
+                    $http({
+                        method: 'PUT',
+                        url: 'http://localhost:8096/drools/session/login/'+user.id,
+                    }).then(function successCallback(response) {
+
+
+                    });
 
 
                     $cookies.put("user", user.username, {

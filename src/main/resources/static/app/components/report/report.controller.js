@@ -35,7 +35,7 @@
 
                         $http({
                             method: 'GET',
-                            url: 'http://localhost:8096/drools/izvestaj'
+                            url: 'http://localhost:8096/drools/izvestaj/'+$cookies.get('id')
                         }).then(function successCallback(response){
                             $scope.svi = response.data;
                             console.log($scope.svi);
