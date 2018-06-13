@@ -26,7 +26,7 @@
 
                         <div ng-repeat="simptom in symptom track by $index">
                             <br/>
-                            <input type="checkbox" ng-model="simptom.izabran" /> <span style="color: black; font-size: 15px" >{{simptom.naziv}} </span>
+                            <input type="checkbox" ng-model="simptom.izabrano" /> <span style="color: black; font-size: 15px" >{{simptom.naziv}} </span>
 
                         </div>
 
@@ -45,7 +45,7 @@
                             <button type="submit" style="float: right !important;" ng-click="proveriBolest(bolest.id)" class="btn btn-primary"   >
                                 <img class="clearDelete" src="../../../assets/images/check.png" width="15" height="15" title="Check illness" alt="submit" />
                             </button>
-                            <input type="checkbox" ng-model="bolest.izabran" /> <span style="color: black; font-size: 15px" >{{bolest.naziv}} </span>
+                            <input type="checkbox" ng-model="bolest.izabrano" /> <span style="color: black; font-size: 15px" >{{bolest.naziv}} </span>
 
                         </div>
 
@@ -56,7 +56,7 @@
 
                         <div ng-repeat="lek in lekovi track by $index">
                             <br/>
-                            <input type="checkbox" ng-model="lek.izabran" /> <span style="color: black; font-size: 15px" >{{lek.naziv}} </span>
+                            <input type="checkbox" ng-model="lek.izabrano" /> <span style="color: black; font-size: 15px" >{{lek.naziv}} </span>
 
                         </div>
 
@@ -71,13 +71,13 @@
 
                         <p>Illnesses : </p>
 
-                        <div>
+                        <div ng-repeat="bolV in verovatnaBolest track by $index">
                             <br/>
 
-                            <button type="submit" style="float: right !important;" ng-click="proveriBolest(bolest.id)" class="btn btn-primary"   >
+                            <button type="submit" style="float: right !important;" ng-click="proveriBolest(bolV.id)" class="btn btn-primary"   >
                                 <img class="clearDelete" src="../../../assets/images/check.png" width="15" height="15" title="Check illness" alt="submit" />
                             </button>
-                            <input type="checkbox" ng-model="verovatnaBolest.izabran" /> <span style="color: black; font-size: 15px" >{{verovatnaBolest.naziv}} </span>
+                            <input type="checkbox" ng-model="bolV.izabrano" /> <span style="color: black; font-size: 15px" >{{bolV.naziv}} </span>
 
                         </div>
 
@@ -88,7 +88,7 @@
 
                         <div ng-repeat="lek in lekoviNajverovatnije track by $index">
                             <br/>
-                            <input type="checkbox" ng-model="lek.izabran" /> <span style="color: black; font-size: 15px" >{{lek.naziv}} </span>
+                            <input type="checkbox" ng-model="lek.izabrano" /> <span style="color: black; font-size: 15px" >{{lek.naziv}} </span>
 
                         </div>
 
@@ -111,7 +111,7 @@
                                 <button type="submit" style="float: right !important;" ng-click="proveriBolest(bolest.id)" class="btn btn-primary"   >
                                     <img class="clearDelete" src="../../../assets/images/check.png" width="15" height="15" title="Check illness" alt="submit" />
                                 </button>
-                                <input type="checkbox" ng-model="bolest.izabran" /> <span style="color: black; font-size: 15px" >{{bolest.naziv}} </span>
+                                <input type="checkbox" ng-model="bolest.izabrano" /> <span style="color: black; font-size: 15px" >{{bolest.naziv}} </span>
 
                             </div>
 
@@ -122,7 +122,7 @@
 
                             <div ng-repeat="lek in lekoviSvi track by $index">
                                 <br/>
-                                <input type="checkbox" ng-model="lek.izabran" /> <span style="color: black; font-size: 15px" >{{lek.naziv}} </span>
+                                <input type="checkbox" ng-model="lek.izabrano" /> <span style="color: black; font-size: 15px" >{{lek.naziv}} </span>
 
                             </div>
 

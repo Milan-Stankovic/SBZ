@@ -6,6 +6,7 @@ import sbz.projekat.dto.IstorijaBolestiDTO;
 import sbz.projekat.dto.PacijentDTO;
 import sbz.projekat.dto.SastojakDTO;
 import sbz.projekat.model.Pacijent;
+import sbz.projekat.model.Sastojak;
 import sbz.projekat.service.PacijentService;
 
 import java.util.List;
@@ -30,6 +31,9 @@ public class PacijentController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/patient/monitoring")
     public List<Pacijent> getMonitoring(){ return pService.getAllMonitoring(true); }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/patient/alergije/{id}")
+    public List<Sastojak> getAlergije(@PathVariable Long id){ return pService.getAlergije(id); }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/patient/{id}")
     public void removeOne(@PathVariable Long id){ pService.removePacijent(id); }

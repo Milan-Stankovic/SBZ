@@ -9,6 +9,48 @@
     function monitorController($location, $scope, $rootScope, $http, $window, $cookies, $state,$timeout) {
         var mc = this;
 
+
+        $scope.notifications=[];
+
+        var init = function (){
+            $scope.notifications=[];
+            var userName = $cookies.get('user');
+            if($cookies.get('user') == null){
+                $location.path("/home")
+            }else{
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:8096/users/'+userName
+                }).then(function successCallback(response){
+                    $scope.user = response.data;
+
+                    if($scope.user.tip =="ADMIN"){
+                        $location.path("/home");
+                    }
+                })
+
+            }
+
+        };
+        init();
+
+
+        $scope.rekurzijaCekaj = function () {
+
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8096/drools/monitor'
+            }).then(function successCallback(response){
+                var temp = response.data;
+                console.log(temp);
+                $scope.notifications.push(temp.tekst);
+            })
+
+        }
+
+
+
+        /*
         var vremeCekanja= 5000;
 
 
@@ -105,6 +147,7 @@
         init();
 
 
+*/
     }
 
 

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sbz.projekat.dto.LekDTO;
 import sbz.projekat.model.Lek;
+import sbz.projekat.model.Sastojak;
 import sbz.projekat.service.LekService;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class LekController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/medicine/get/{id}")
     public Lek getOneId(@PathVariable Long id){ return lService.getLekId(id); }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/medicine/sastojci/{id}")
+    public List<Sastojak> getSastojci(@PathVariable Long id){ return lService.getSastojci(id); }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/medicine/{id}")
     public void removeOne(@PathVariable Long id){ lService.removeLek(id); }

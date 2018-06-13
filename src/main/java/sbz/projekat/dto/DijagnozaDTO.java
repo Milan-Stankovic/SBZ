@@ -1,10 +1,11 @@
 package sbz.projekat.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DijagnozaDTO {
 
-    private List<String> simptomi;
+    private List<String> simptomi = new ArrayList<>();
 
     private Long korisnik;
 

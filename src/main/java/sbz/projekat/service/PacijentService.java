@@ -27,6 +27,16 @@ public class PacijentService {
 
 
 
+    public List<Sastojak> getAlergije(Long id){
+        List<Sastojak> alergije = new ArrayList<>();
+
+        Pacijent p =getOne(id);
+        if(p !=null)
+            alergije=p.getAlergije();
+
+        return alergije;
+    }
+
     public List<Pacijent> getAll(){
         List<Pacijent> pacijenti = new ArrayList<>();
         pRepo.findAll().forEach(pacijenti::add);
@@ -34,15 +44,23 @@ public class PacijentService {
     }
 
     public void addIstorija(IstorijaBolestiDTO idto, Long id){
-        Pacijent p = new Pacijent();
-        p.setId(id);
 
-        IstorijaBolesti i = Converter.convertIstorija(idto);
-        if(i != null){
-            i = iRepo.save(i);
-            p.getIstorija().add(i);
-            pRepo.save(p);
+        Optional<Pacijent> op =pRepo.findById(id);
+
+        if(op.isPresent()){
+
+            Pacijent p = op.get();
+
+            IstorijaBolesti i = Converter.convertIstorija(idto);
+            if(i != null){
+                i = iRepo.save(i);
+                p.getIstorija().add(i);
+                pRepo.save(p);
+            }
+
         }
+
+
     }
 
     public void addAlergija(SastojakDTO al, Long id){
@@ -50,9 +68,15 @@ public class PacijentService {
         Sastojak s = Converter.convertSastojka(al);
         if(s != null && id>0){
             s = sRepo.save(s);
-            Pacijent p = new Pacijent();
-            p.setId(id);
-            p.getAlergije().add(s);
+
+
+            Optional<Pacijent> op =pRepo.findById(id);
+
+            if(op.isPresent()){
+                Pacijent p = op.get();
+                p.getAlergije().add(s);
+                pRepo.save(p);
+            }
 
         }
     }
@@ -74,9 +98,12 @@ public class PacijentService {
         if(al>0 && id >0){
             Sastojak s = new Sastojak();
             s.setId(al);
-            Pacijent p = new Pacijent();
-            p.setId(id);
-            p.getAlergije().add(s);
+            Pacijent p = getOne(id);
+            if(p != null){
+                p.getAlergije().add(s);
+                pRepo.save(p);
+            }
+
 
         }
     }

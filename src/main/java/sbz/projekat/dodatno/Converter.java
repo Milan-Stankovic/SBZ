@@ -205,7 +205,9 @@ public class Converter {
         if(ib.getBolesti() != null)
             if(ib.getSimptomi() != null)
                 if(ib.getTerapije() != null)
-                    b= true;
+                    if(ib.getDoktorId() !=null)
+                        if(ib.getDoktorId() >0)
+                            b= true;
 
         return b;
     }
@@ -255,6 +257,9 @@ public class Converter {
             is.setTerapije(terapije);
             Date d = new Date();
             is.setVreme(d);
+            Korisnik k = new Korisnik();
+            k.setId(ib.getDoktorId());
+            is.setDoktor(k);
         }
 
         return is;

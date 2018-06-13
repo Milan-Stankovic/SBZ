@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import sbz.projekat.dodatno.Converter;
 import sbz.projekat.dto.LekDTO;
 import sbz.projekat.model.Lek;
+import sbz.projekat.model.Sastojak;
 import sbz.projekat.repostory.LekRepository;
 
 import java.util.ArrayList;
@@ -16,6 +17,16 @@ public class LekService {
 
     @Autowired
     private LekRepository lRepo;
+
+
+    public List<Sastojak>  getSastojci(Long id){
+        List<Sastojak> sastojci = new ArrayList<>();
+        Lek l = getLekId(id);
+        if(l != null)
+            sastojci=l.getSastojci();
+
+        return sastojci;
+    }
 
     public List<Lek> getAll(){
         List<Lek> lekovi = new ArrayList<>();

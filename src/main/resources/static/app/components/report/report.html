@@ -6,15 +6,16 @@
             <h2> Report </h2>
 
             <h3> Possible chronic illness </h3>
-            <div ng-repeat="patient in patients track by $index" class="image group">
+
+            <br/>
+            <br/>
+
+            <div ng-repeat="patient in patients1 track by $index" class="image group">
 
                 <div class="span_2_of_2">
                     <span>Insurance number :</span>
                     <span style="color: #AEAEAE !important;"> &nbsp; {{patient.brojZdravstveneKartice}} </span>
 
-                    <button type="submit" style="float: right !important;" ng-click="more($index)" class="btn btn-primary"   >
-                        <img class="clearDelete" src="../../../assets/images/more.png" width="15" height="15" title="More" alt="submit" />
-                    </button>
 
                     <br/>
                     <br/>
@@ -31,7 +32,8 @@
                     <span ng-if="!patient.monitoring" style="color: #AEAEAE !important;"> &nbsp; No</span>
 
 
-
+                    <br/>
+                    <br/>
                     </div>
 
 
@@ -41,30 +43,29 @@
                 <div class="clear"></div>
 
                 <h3> Possible immunity weakness </h3>
-                <div ng-repeat="patient in patients2 track by $index" class="image group">
+                <br/>
+                <br/>
+                <div ng-repeat="patient2 in patients2 track by $index" class="image group">
 
                     <div class="span_2_of_2">
                         <span>Insurance number :</span>
-                        <span style="color: #AEAEAE !important;"> &nbsp; {{patient.brojZdravstveneKartice}} </span>
-
-                        <button type="submit" style="float: right !important;" ng-click="more($index)" class="btn btn-primary"   >
-                            <img class="clearDelete" src="../../../assets/images/more.png" width="15" height="15" title="More" alt="submit" />
-                        </button>
+                        <span style="color: #AEAEAE !important;"> &nbsp; {{patient2.brojZdravstveneKartice}} </span>
 
                         <br/>
                         <br/>
                         <span>First name : </span>
-                        <span style="color: #AEAEAE !important;"> &nbsp; {{patient.ime}}</span>
+                        <span style="color: #AEAEAE !important;"> &nbsp; {{patient2.ime}}</span>
                         <br/>
                         <br/>
                         <span>Last name : </span>
-                        <span style="color: #AEAEAE !important;"> &nbsp; {{patient.prezime}}</span>
+                        <span style="color: #AEAEAE !important;"> &nbsp; {{patient2.prezime}}</span>
                         <br/>
                         <br/>
                         <span>Being monitored : </span>
-                        <span ng-if="patient.monitoring" style="color: #AEAEAE !important;"> &nbsp; Yes</span>
-                        <span ng-if="!patient.monitoring" style="color: #AEAEAE !important;"> &nbsp; No</span>
-
+                        <span ng-if="patient2.monitoring" style="color: #AEAEAE !important;"> &nbsp; Yes</span>
+                        <span ng-if="!patient2.monitoring" style="color: #AEAEAE !important;"> &nbsp; No</span>
+                        <br/>
+                        <br/>
 
                         </div>
 
@@ -76,32 +77,32 @@
 
 
                     <h3> Possible abuse </h3>
-                    <div ng-repeat="patient in patients3 track by $index" class="image group">
+                    <br/>
+                    <br/>
+                    <div ng-repeat="patient3 in patients3 track by $index" class="image group">
 
                         <div class="span_2_of_2">
                             <span>Insurance number :</span>
-                            <span style="color: #AEAEAE !important;"> &nbsp; {{patient.brojZdravstveneKartice}} </span>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{patient3.brojZdravstveneKartice}} </span>
 
-                            <button type="submit" style="float: right !important;" ng-click="more($index)" class="btn btn-primary"   >
-                                <img class="clearDelete" src="../../../assets/images/more.png" width="15" height="15" title="More" alt="submit" />
-                            </button>
 
                             <br/>
                             <br/>
                             <span>First name : </span>
-                            <span style="color: #AEAEAE !important;"> &nbsp; {{patient.ime}}</span>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{patient3.ime}}</span>
                             <br/>
                             <br/>
                             <span>Last name : </span>
-                            <span style="color: #AEAEAE !important;"> &nbsp; {{patient.prezime}}</span>
+                            <span style="color: #AEAEAE !important;"> &nbsp; {{patient3.prezime}}</span>
                             <br/>
                             <br/>
                             <span>Being monitored : </span>
-                            <span ng-if="patient.monitoring" style="color: #AEAEAE !important;"> &nbsp; Yes</span>
-                            <span ng-if="!patient.monitoring" style="color: #AEAEAE !important;"> &nbsp; No</span>
+                            <span ng-if="patient3.monitoring" style="color: #AEAEAE !important;"> &nbsp; Yes</span>
+                            <span ng-if="!patient3.monitoring" style="color: #AEAEAE !important;"> &nbsp; No</span>
 
 
-
+                            <br/>
+                            <br/>
 
                             </div>
 

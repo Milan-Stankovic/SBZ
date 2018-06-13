@@ -1,12 +1,8 @@
 package sbz.projekat.service;
 
-import org.drools.core.ClockType;
 import org.drools.core.time.SessionPseudoClock;
-import org.kie.api.runtime.Environment;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-import org.kie.api.runtime.KieSessionConfiguration;
-import org.kie.api.runtime.conf.ClockTypeOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +11,7 @@ import sbz.projekat.dto.*;
 import sbz.projekat.model.Bolest;
 import sbz.projekat.model.Pacijent;
 
+import sbz.projekat.repostory.BolestRepository;
 import sbz.projekat.repostory.PacijentRepository;
 
 import java.util.ArrayList;
@@ -30,6 +27,9 @@ public class DijagnozaService {
     @Autowired
     private PacijentRepository pRepo;
 
+    @Autowired
+    private BolestRepository bRepo;
+
     private static Logger log = LoggerFactory.getLogger(DijagnozaService.class);
 
     private final KieContainer kieContainer;
@@ -43,14 +43,21 @@ public class DijagnozaService {
     private ArrayList<Bolest> converter(ArrayList<String> s){
         ArrayList<Bolest> bolesti = new ArrayList<>();
 
+        for (String temp:s) {
+            Bolest b = bRepo.findByNaziv(temp);
+            if(b!=null){
+                bolesti.add(b);
+                System.out.println(temp);
+            }
+        }
 
         return bolesti;
     }
 
-    public ArrayList<Bolest> najverovatnije(DijagnozaDTO d) {
+    public RezultatBolestiDTO najverovatnije(DijagnozaDTO d) {
 
 
-
+        RezultatBolestiDTO r = new RezultatBolestiDTO();
         SveBolestiDTO bolesti = new SveBolestiDTO();
 
 
@@ -63,7 +70,7 @@ public class DijagnozaService {
         CounterDTO c = new CounterDTO();
 
         if(op.isPresent()){
-            KieSession kieSession = kieContainer.newKieSession();
+            KieSession kieSession = kieContainer.newKieSession("cepKsession");
             dto.setIstorija(op.get().getIstorija());
 
             kieSession.insert(dat);
@@ -75,13 +82,39 @@ public class DijagnozaService {
             kieSession.dispose();
             bolesti= (SveBolestiDTO) kieSession.getGlobal("bolesti");
 
-            return converter(bolesti.getBolesti()); // SREDITI OVO
+
+
+            r.setBolesti(converter(bolesti.getBolesti()));
+
 
         }
 
-        return new ArrayList<>();
+        return r;
     }
 
+    public RezultatSimptomiDTO bolest(SimptomiDTO naziv){
+        RezultatSimptomiDTO rezultat = new RezultatSimptomiDTO();
+
+
+        KieSession kieSession = kieContainer.newKieSession("cepKsession");
+        kieSession.getAgenda().getAgendaGroup("bolest").setFocus();
+
+
+
+
+        kieSession.insert(naziv.getNaziv());
+
+        kieSession.setGlobal("sviSimptomi", rezultat);
+
+
+
+        kieSession.fireAllRules();
+        kieSession.dispose();
+
+        rezultat =(RezultatSimptomiDTO) kieSession.getGlobal("sviSimptomi");
+
+        return rezultat;
+    }
 
     public List<Bolest> sve(DijagnozaDTO d) {
 
@@ -95,7 +128,7 @@ public class DijagnozaService {
         dto.setSimptomi(d.getSimptomi());
         Optional<Pacijent> op = pRepo.findById(d.getKorisnik());
         if(op.isPresent()){
-            KieSession kieSession = kieContainer.newKieSession();
+            KieSession kieSession = kieContainer.newKieSession("cepKsession");
             kieSession.getAgenda().getAgendaGroup("sve").setFocus();
             kieSession.setGlobal("sveBolesti", bolesti);
 
@@ -114,28 +147,36 @@ public class DijagnozaService {
 
     }
 
-    public String validiraj(ValidacijaDTO dto) {
-        KieSession kieSession = kieContainer.newKieSession();
+    public RezultatStringDTO validiraj(ValidacijaDTO dto) {
+        KieSession kieSession = kieContainer.newKieSession("cepKsession");
         kieSession.getAgenda().getAgendaGroup("validacija").setFocus();
 
-        String valicacija = "NO";
+        RezultatStringDTO validiraj = new RezultatStringDTO();
 
-        kieSession.setGlobal("validiraj", valicacija);
+        kieSession.setGlobal("validiraj", validiraj);
 
         kieSession.insert(dto);
 
         kieSession.fireAllRules();
         kieSession.dispose();
-        return  (String) kieSession.getGlobal("validiraj");
+
+        validiraj=  (RezultatStringDTO) kieSession.getGlobal("validiraj");
+
+        System.out.println("IZ VALIDACIJE : " + validiraj.getTekst());
+
+        RezultatStringDTO r = new RezultatStringDTO();
+        r.setTekst(validiraj.getTekst());
+        return r;
+
     }
 
 
-    public String monitor(){
+    public RezultatStringDTO monitor(){
         String s ="";
 
-        KieSessionConfiguration ksconf1 = kieContainer.getKieSessionConfiguration();
-        ksconf1.setOption(ClockTypeOption.get(ClockType.PSEUDO_CLOCK.getId()));
-        KieSession ksession1 = kieContainer.newKieSession();
+//        KieSessionConfiguration ksconf1 = kieContainer.getKieSessionConfiguration();
+ //       ksconf1.setOption(ClockTypeOption.get(ClockType.PSEUDO_CLOCK.getId()));
+        KieSession ksession1 = kieContainer.newKieSession("cepKsession");
 
         List<Pacijent> pacijenti = pRepo.findByMonitoring(true);
 
@@ -148,6 +189,7 @@ public class DijagnozaService {
         ksession1.setGlobal("ispis", ispis);
 
         ksession1.insert(p); // Zbog bubrezne
+
 
         SessionPseudoClock clock = ksession1.getSessionClock();
         for (int index = 0; index < 100; index++) {
@@ -204,11 +246,17 @@ public class DijagnozaService {
         if( !ispis.getSrckaPoruka().equals(""))
             s+=ispis.getSrckaPoruka() + System.getProperty("line.separator");
 
-        return s;
+        ksession1.dispose();
+
+
+        RezultatStringDTO r = new RezultatStringDTO();
+        r.setTekst(s);
+        return r;
+
     }
 
-    public IzvestajDTO izvestaj() {
-        KieSession kieSession = kieContainer.newKieSession();
+    public RezultatIzvestajaDTO izvestaj() {
+        KieSession kieSession = kieContainer.newKieSession("cepKsession");
         kieSession.getAgenda().getAgendaGroup("izvestaj").setFocus();
 
         DoktoriDTO doktori = new DoktoriDTO();
@@ -231,8 +279,42 @@ public class DijagnozaService {
 
         kieSession.fireAllRules();
         kieSession.dispose();
-        return (IzvestajDTO) kieSession.getGlobal("izvestaj");
+        i= (IzvestajDTO) kieSession.getGlobal("izvestaj");
 
+        return izvestajConverter(i);
+
+    }
+
+    private RezultatIzvestajaDTO izvestajConverter( IzvestajDTO i){
+        RezultatIzvestajaDTO r = new RezultatIzvestajaDTO();
+
+        for (Long l: i.getZavisnici()) {
+            Optional<Pacijent> op =pRepo.findById(l);
+            if(op.isPresent()){
+                Pacijent p = op.get();
+                r.getZavisnici().add(p);
+            }
+        }
+
+        for (Long l: i.getHronicni()) {
+            Optional<Pacijent> op =pRepo.findById(l);
+            if(op.isPresent()){
+                Pacijent p = op.get();
+                r.getHronicni().add(p);
+            }
+        }
+
+
+        for (Long l: i.getImunitet()) {
+            Optional<Pacijent> op =pRepo.findById(l);
+            if(op.isPresent()){
+                Pacijent p = op.get();
+                r.getImunitet().add(p);
+            }
+        }
+
+
+        return r;
     }
 
 

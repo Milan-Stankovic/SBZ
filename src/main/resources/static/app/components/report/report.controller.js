@@ -35,12 +35,13 @@
 
                         $http({
                             method: 'GET',
-                            url: 'http://localhost:8096/report'
+                            url: 'http://localhost:8096/drools/izvestaj'
                         }).then(function successCallback(response){
                             $scope.svi = response.data;
-                            $scope.patients1 = $scope.svi.hronicna;
+                            console.log($scope.svi);
+                            $scope.patients1 = $scope.svi.hronicni;
                             $scope.patients2 = $scope.svi.imunitet;
-                            $scope.patients3 = $scope.svi.zavsinik;
+                            $scope.patients3 = $scope.svi.zavisnici;
 
 
 
